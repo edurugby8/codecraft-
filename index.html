@@ -32,6 +32,8 @@
       --shadow:0 10px 30px rgba(0,0,0,.15);
       --shadow-sm:0 6px 16px rgba(0,0,0,.10);
       --glass:rgba(255,255,255,.08);
+      --chip:#ecfdf5;
+      --chip-border:#cfe9dc;
     }
     *{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%}
@@ -130,7 +132,7 @@
     }
     .subtle{color:var(--muted); text-align:center; margin-bottom:22px}
 
-    /* Cards */
+    /* Cards / chips */
     .grid-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
     .card{
       background:#fff;border-radius:var(--radius);padding:22px 18px;
@@ -139,9 +141,9 @@
     }
     .card:hover{transform:translateY(-6px); box-shadow:var(--shadow); border-color:#cfe9dc}
     .card h3{margin-bottom:6px;color:var(--ink)}
-    .price{display:inline-flex;align-items:center;gap:6px;margin-top:8px;padding:6px 10px;border-radius:999px;background:#ecfdf5;border:1px solid #cfe9dc;color:var(--primary-2);font-weight:800}
+    .price{display:inline-flex;align-items:center;gap:6px;margin-top:8px;padding:6px 10px;border-radius:999px;background:var(--chip);border:1px solid var(--chip-border);color:var(--primary-2);font-weight:800}
 
-    /* Metodología (FIX: sin cortes y numeración premium) */
+    /* Metodología (con IA) */
     .method{
       background:#fff;border-radius:var(--radius-lg); padding:22px 20px; box-shadow:var(--shadow-sm);
       border:1px solid #e6f2eb; overflow:hidden;
@@ -151,8 +153,7 @@
       counter-reset: step;
       list-style:none;
       display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-      gap:12px;
-      margin:0; padding:0;
+      gap:12px; margin:0; padding:0;
     }
     .method li{
       position:relative; padding:12px 12px 12px 56px;
@@ -166,6 +167,19 @@
       background:linear-gradient(135deg,var(--primary),var(--primary-2)); color:#fff; font-weight:800;
       box-shadow:0 6px 12px rgba(22,163,74,.25);
     }
+
+    /* Plan destacado de diseño web */
+    .plan{
+      background:#fff;border:1px solid #e6f2eb;border-radius:24px;padding:22px 22px;box-shadow:var(--shadow-sm)
+    }
+    .plan-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:8px}
+    .badge{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;background:#f0fdf4;border:1px solid #bbf7d0;color:#166534;font-weight:800;font-size:.9rem}
+    .plan h3{font-size:1.35rem;margin:0}
+    .plan-features{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-top:8px}
+    .plan-features li{background:#f9fffb;border:1px solid #e6f2eb;border-radius:12px;padding:10px 12px}
+    .plan-price{display:flex;align-items:center;gap:10px;margin-top:10px}
+    .plan-price .num{font-size:2rem;font-weight:800;color:var(--primary-2)}
+    .footnote{font-size:.92rem;color:#64748b;margin-top:8px}
 
     /* Valor */
     .valor-list{list-style:none;padding:0;font-size:1.05rem;line-height:1.8}
@@ -306,7 +320,7 @@
         </div>
       </div>
 
-      <!-- Metodología (con paso IA añadido) -->
+      <!-- Metodología (con paso IA añadido y FIX visual) -->
       <div class="method container reveal" style="margin-top:28px">
         <h3>Nuestra metodología</h3>
         <ol>
@@ -321,46 +335,79 @@
     </div>
   </section>
 
-  <!-- SERVICIOS (con precios + nuevos servicios) -->
+  <!-- SERVICIOS (Foco en Diseño Web + precios más bajos) -->
   <section id="servicios" class="section">
     <div class="container">
       <h2>Servicios</h2>
-      <p class="subtle">Precios orientativos (sin IVA). Paquetes a medida según necesidades.</p>
-      <div class="grid-cards reveal">
-        <div class="card">
-          <h3>Diseño Web</h3>
-          <p>Landing pages y sitios completos, responsive y optimizados.</p>
-          <span class="price">desde 499&nbsp;€</span>
+      <p class="subtle">Nos especializamos en <strong>diseño web</strong>. El resto de servicios complementan tu presencia digital.</p>
+
+      <!-- Plan destacado -->
+      <div class="plan reveal">
+        <div class="plan-head">
+          <h3>Diseño web · Plan Básico</h3>
+          <span class="badge">Más elegido</span>
         </div>
+        <div class="plan-price">
+          <span class="num">75&nbsp;€</span>
+          <span class="price">precio cerrado</span>
+        </div>
+        <p class="subtle" style="margin-top:2px">Ideal para empezar con una web clara y lista para convertir.</p>
+
+        <ul class="plan-features" style="margin-top:8px">
+          <li>• Lema de la empresa (propio o lo creamos nosotros)</li>
+          <li>• 2 imágenes decorativas (optimización incluida)</li>
+          <li>• Secciones: Inicio, Quiénes somos, Servicios y Contacto</li>
+          <li>• Botón de WhatsApp en Contacto</li>
+        </ul>
+
+        <p class="footnote">* El <strong>dominio</strong> se paga aparte (cuota anual según registrador). Hosting opcional.</p>
+
+        <h4 style="margin:14px 0 6px">Extras opcionales</h4>
+        <div class="grid-cards" style="margin-top:4px">
+          <div class="card"><h3>Logo</h3><p>Diseño de logotipo en PNG/SVG + guía breve de uso.</p><span class="price">30&nbsp;€</span></div>
+          <div class="card"><h3>Tienda con catálogo</h3><p>Listado de productos, fichas y carrito básico.</p><span class="price">150&nbsp;€</span></div>
+          <div class="card"><h3>Formulario + Página “Gracias”</h3><p>Formulario de contacto y página de confirmación.</p><span class="price">30&nbsp;€</span></div>
+          <div class="card"><h3>Barra informativa (marquesina)</h3><p>Mensaje que se desplaza con anuncios/ofertas.</p><span class="price">30&nbsp;€</span></div>
+          <div class="card"><h3>Publicación SEO</h3><p>Entrada optimizada (keyword, meta, estructura).</p><span class="price">39&nbsp;€</span></div>
+          <div class="card"><h3>Página adicional</h3><p>Sección nueva con contenido y maquetación.</p><span class="price">25&nbsp;€</span></div>
+          <div class="card"><h3>Multiidioma</h3><p>Duplicado de páginas + selector de idioma.</p><span class="price">59&nbsp;€</span></div>
+          <div class="card"><h3>Google Maps &amp; ficha negocio</h3><p>Mapa integrado + asesoría de ficha.</p><span class="price">15&nbsp;€</span></div>
+          <div class="card"><h3>Políticas legales</h3><p>Privacidad, cookies y aviso legal básicos.</p><span class="price">25&nbsp;€</span></div>
+        </div>
+      </div>
+
+      <!-- Otros servicios (secundarios, precios revisados a la baja) -->
+      <h3 style="text-align:center;margin:28px 0 12px;color:var(--primary-2)">Otros servicios</h3>
+      <div class="grid-cards reveal">
         <div class="card">
           <h3>Mantenimiento Web</h3>
           <p>Actualizaciones, copias de seguridad y ajustes técnicos.</p>
-          <span class="price">desde 39&nbsp;€/mes</span>
+          <span class="price">desde 29&nbsp;€/mes</span>
         </div>
         <div class="card">
           <h3>Asesoría &amp; SEO</h3>
-          <p>Mejora de posicionamiento, contenidos y analítica.</p>
-          <span class="price">desde 199&nbsp;€</span>
-        </div>
-        <div class="card">
-          <h3>Creación de códigos QR</h3>
-          <p>QR estáticos y dinámicos con tu marca, listos para impresión o campañas.</p>
-          <span class="price">desde 29&nbsp;€</span>
+          <p>Auditoría técnica y contenidos para mejorar visibilidad.</p>
+          <span class="price">desde 99&nbsp;€</span>
         </div>
         <div class="card">
           <h3>Gestión de redes sociales</h3>
-          <p>Plan editorial, publicaciones y atención básica en RRSS.</p>
-          <span class="price">desde 149&nbsp;€/mes</span>
+          <p>Plan editorial y publicaciones mensuales.</p>
+          <span class="price">desde 99&nbsp;€/mes</span>
         </div>
         <div class="card">
           <h3>Reels / Vídeo corto</h3>
-          <p>Guion, edición y animaciones ligeras para Instagram/TikTok.</p>
-          <span class="price">desde 59&nbsp;€/pieza</span>
+          <p>Guion, edición y subtítulos para Instagram/TikTok.</p>
+          <span class="price">desde 39&nbsp;€/pieza</span>
+        </div>
+        <div class="card">
+          <h3>Creación de códigos QR</h3>
+          <p>QR estáticos/dinámicos con tu marca, para impresión o campañas.</p>
+          <span class="price">desde 15&nbsp;€</span>
         </div>
         <div class="card">
           <h3>Creación de logos</h3>
-          <p>Identidad visual con entregables en PNG/SVG y manual básico.</p>
-          <span class="price">desde 149&nbsp;€</span>
+          <p>Identidad visual lista para web y redes.</p>
+          <span class="price">30&nbsp;€</span>
         </div>
       </div>
     </div>
@@ -425,7 +472,7 @@
     }
     window.addEventListener('scroll', onScroll); onScroll();
 
-    toggle.addEventListener('click', () => {
+    toggle?.addEventListener('click', () => {
       const isOpen = menu.classList.toggle('open');
       toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     });
