@@ -7,7 +7,7 @@
   <meta name="description" content="CodeCraft: equipo profesional en diseño y desarrollo web, rendimiento y crecimiento digital para pymes y emprendedores." />
   <title>CodeCraft · Webs que impulsan tu negocio</title>
 
-  <!-- Open Graph / Twitter (misma info, mejor preview al compartir) -->
+  <!-- Open Graph / Twitter -->
   <meta property="og:title" content="CodeCraft · Webs que impulsan tu negocio">
   <meta property="og:description" content="Equipo profesional de diseño y desarrollo web. Sitios rápidos, seguros y hechos para convertir visitas en clientes.">
   <meta property="og:type" content="website">
@@ -25,7 +25,6 @@
       --primary-2:#0d8b3f;
       --bg:#f4fff7;
       --ink:#0f172a;
-      --ink-2:#27324a;
       --muted:#6b7280;
       --nav-h:72px;
       --radius:16px;
@@ -39,9 +38,7 @@
     html{scroll-behavior:smooth}
     body{
       font-family:'Rubik',system-ui,Segoe UI,Roboto,Arial,sans-serif;
-      background:var(--bg);
-      color:var(--ink);
-      line-height:1.6;
+      background:var(--bg); color:var(--ink); line-height:1.6;
       -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
     }
 
@@ -76,8 +73,7 @@
     /* HERO */
     .hero{
       position:relative;min-height:calc(100vh - var(--nav-h));
-      display:grid;place-items:center;
-      padding-top:var(--nav-h);
+      display:grid;place-items:center;padding-top:var(--nav-h);
       color:#fff;isolation:isolate;
       background:
         radial-gradient(60% 60% at 75% 25%, rgba(22,163,74,.35) 0%, rgba(22,163,74,0) 60%),
@@ -85,7 +81,6 @@
         url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1800&q=80') center/cover no-repeat;
     }
     .hero::after{
-      /* línea decorativa inferior */
       content:""; position:absolute; left:0; right:0; bottom:-1px; height:10px;
       background:linear-gradient(90deg,transparent,rgba(22,163,74,.9),transparent);
       filter:blur(.5px);
@@ -100,8 +95,7 @@
     .hero p{max-width:760px;margin:0 auto 1.1rem;font-size:clamp(1rem,2.8vw,1.22rem);color:#e6f6ec}
     .btn{
       display:inline-block;border:none;border-radius:40px;padding:14px 26px;font-weight:800;cursor:pointer;
-      transition:transform .2s, filter .2s, box-shadow .2s;
-      will-change:transform;
+      transition:transform .2s, filter .2s, box-shadow .2s; will-change:transform;
     }
     .btn-primary{
       background:linear-gradient(135deg,var(--primary),var(--primary-2));
@@ -145,14 +139,33 @@
     }
     .card:hover{transform:translateY(-6px); box-shadow:var(--shadow); border-color:#cfe9dc}
     .card h3{margin-bottom:6px;color:var(--ink)}
+    .price{display:inline-flex;align-items:center;gap:6px;margin-top:8px;padding:6px 10px;border-radius:999px;background:#ecfdf5;border:1px solid #cfe9dc;color:var(--primary-2);font-weight:800}
 
-    /* Metodología box */
+    /* Metodología (FIX: sin cortes y numeración premium) */
     .method{
-      background:#fff;border-radius:var(--radius-lg); padding:22px 20px; box-shadow:var(--shadow-sm); border:1px solid #e6f2eb;
+      background:#fff;border-radius:var(--radius-lg); padding:22px 20px; box-shadow:var(--shadow-sm);
+      border:1px solid #e6f2eb; overflow:hidden;
     }
-    .method h3{ text-align:center; margin-bottom:8px; color:var(--primary-2)}
-    .method ol{ display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:10px; margin-left:18px}
-    .method li{padding:8px 0}
+    .method h3{ text-align:center; margin-bottom:12px; color:var(--primary-2)}
+    .method ol{
+      counter-reset: step;
+      list-style:none;
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:12px;
+      margin:0; padding:0;
+    }
+    .method li{
+      position:relative; padding:12px 12px 12px 56px;
+      border:1px solid #e6f2eb; border-radius:12px; background:#fff;
+      min-height:56px; display:flex; align-items:center;
+    }
+    .method li::before{
+      counter-increment: step; content: counter(step);
+      position:absolute; left:12px; top:50%; transform:translateY(-50%);
+      width:30px; height:30px; border-radius:999px; display:grid; place-items:center;
+      background:linear-gradient(135deg,var(--primary),var(--primary-2)); color:#fff; font-weight:800;
+      box-shadow:0 6px 12px rgba(22,163,74,.25);
+    }
 
     /* Valor */
     .valor-list{list-style:none;padding:0;font-size:1.05rem;line-height:1.8}
@@ -184,7 +197,7 @@
     .loader-content img{width:160px;height:auto;animation:pulse 2s infinite}
     @keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.08)}100%{transform:scale(1)}}
 
-    /* Reveal on scroll (suave) */
+    /* Reveal on scroll */
     .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease, transform .6s ease}
     .reveal.show{opacity:1;transform:none}
 
@@ -210,7 +223,7 @@
   </div>
 
   <!-- NAV -->
-  <nav id="topnav" class="scrolled-on-load-fix">
+  <nav id="topnav">
     <div class="container nav-inner">
       <div class="logo-wrap">
         <span class="brand">CodeCraft</span>
@@ -293,12 +306,14 @@
         </div>
       </div>
 
+      <!-- Metodología (con paso IA añadido) -->
       <div class="method container reveal" style="margin-top:28px">
         <h3>Nuestra metodología</h3>
         <ol>
           <li>Descubrimiento y objetivos</li>
           <li>Propuesta y calendario</li>
           <li>Diseño UX/UI</li>
+          <li>Optimización con IA (análisis de contenido, variantes creativas y asistentes para acelerar producción)</li>
           <li>Desarrollo + QA</li>
           <li>Lanzamiento y soporte</li>
         </ol>
@@ -306,22 +321,46 @@
     </div>
   </section>
 
-  <!-- SERVICIOS -->
+  <!-- SERVICIOS (con precios + nuevos servicios) -->
   <section id="servicios" class="section">
     <div class="container">
       <h2>Servicios</h2>
+      <p class="subtle">Precios orientativos (sin IVA). Paquetes a medida según necesidades.</p>
       <div class="grid-cards reveal">
         <div class="card">
           <h3>Diseño Web</h3>
           <p>Landing pages y sitios completos, responsive y optimizados.</p>
+          <span class="price">desde 499&nbsp;€</span>
         </div>
         <div class="card">
-          <h3>Mantenimiento</h3>
+          <h3>Mantenimiento Web</h3>
           <p>Actualizaciones, copias de seguridad y ajustes técnicos.</p>
+          <span class="price">desde 39&nbsp;€/mes</span>
         </div>
         <div class="card">
           <h3>Asesoría &amp; SEO</h3>
           <p>Mejora de posicionamiento, contenidos y analítica.</p>
+          <span class="price">desde 199&nbsp;€</span>
+        </div>
+        <div class="card">
+          <h3>Creación de códigos QR</h3>
+          <p>QR estáticos y dinámicos con tu marca, listos para impresión o campañas.</p>
+          <span class="price">desde 29&nbsp;€</span>
+        </div>
+        <div class="card">
+          <h3>Gestión de redes sociales</h3>
+          <p>Plan editorial, publicaciones y atención básica en RRSS.</p>
+          <span class="price">desde 149&nbsp;€/mes</span>
+        </div>
+        <div class="card">
+          <h3>Reels / Vídeo corto</h3>
+          <p>Guion, edición y animaciones ligeras para Instagram/TikTok.</p>
+          <span class="price">desde 59&nbsp;€/pieza</span>
+        </div>
+        <div class="card">
+          <h3>Creación de logos</h3>
+          <p>Identidad visual con entregables en PNG/SVG y manual básico.</p>
+          <span class="price">desde 149&nbsp;€</span>
         </div>
       </div>
     </div>
@@ -375,7 +414,7 @@
   <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js" defer></script>
 
   <script>
-    // Navegación: sombra al hacer scroll + menú móvil
+    // NAV: sombra al hacer scroll + menú móvil
     const nav = document.getElementById('topnav');
     const menu = document.getElementById('menu');
     const toggle = document.querySelector('.nav-toggle');
@@ -391,7 +430,7 @@
       toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     });
 
-    // Reveal on scroll (suave y ligero)
+    // Reveal on scroll
     const io = new IntersectionObserver((entries)=>{
       entries.forEach(e=>{
         if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target); }
