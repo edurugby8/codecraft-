@@ -24,10 +24,10 @@
   <link rel="alternate" href="https://www.codecraftedu.es/" hreflang="es-es">
   <link rel="alternate" href="https://www.codecraftedu.es/" hreflang="x-default">
 
-  <!-- Sitemap (crea /sitemap.xml cuando lo tengas) -->
+  <!-- Sitemap -->
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 
-  <!-- Preload imagen hero para mejorar LCP -->
+  <!-- Preload imagen hero -->
   <link rel="preload" as="image" href="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1800&q=80" imagesrcset="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80 1200w, https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1800&q=80 1800w" imagesizes="100vw">
 
   <!-- Tipografía -->
@@ -172,9 +172,15 @@
     .plan-price .num{font-size:2rem;font-weight:800;color:var(--primary-2)}
     .footnote{font-size:.92rem;color:#64748b;margin-top:8px}
 
-    /* Valor */
+    /* Valor (FIX imagen: contenedor con aspect-ratio y object-fit) */
     .valor-list{list-style:none;padding:0;font-size:1.05rem;line-height:1.8}
-    .valor-img{width:100%;border-radius:20px;box-shadow:var(--shadow);border:1px solid #e6f2eb}
+    .valor-media{
+      position:relative;border-radius:20px;overflow:hidden;
+      box-shadow:var(--shadow);border:1px solid #e6f2eb;
+      aspect-ratio:16/10; /* marco estable en todos los tamaños */
+      max-height:560px;
+    }
+    .valor-media img{width:100%;height:100%;display:block;object-fit:cover}
 
     /* CTA WHATSAPP */
     #contacto{text-align:center;padding-bottom:80px}
@@ -313,7 +319,7 @@
     </div>
   </section>
 
-  <!-- SERVICIOS (SEO: texto claro + precios) -->
+  <!-- SERVICIOS -->
   <section id="servicios" class="section" itemscope itemtype="https://schema.org/Service">
     <div class="container">
       <h2>Servicios</h2>
@@ -391,7 +397,7 @@
     </div>
   </section>
 
-  <!-- VALOR -->
+  <!-- VALOR (FIX imagen) -->
   <section id="valor" class="section">
     <div class="container">
       <h2>Creando webs de valor</h2>
@@ -406,13 +412,23 @@
           </ul>
         </div>
         <div style="flex:1;min-width:280px">
-          <img class="valor-img" src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80" alt="Equipo creando una web moderna" width="800" height="533" loading="lazy">
+          <figure class="valor-media">
+            <img
+              src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1200&q=80"
+              srcset="
+                https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=800&q=80 800w,
+                https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1200&q=80 1200w,
+                https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1600&q=80 1600w"
+              sizes="(max-width: 900px) 100vw, 50vw"
+              alt="Laptop con código y escritorio de trabajo creativo"
+              width="1200" height="750" loading="lazy" decoding="async" fetchpriority="low">
+          </figure>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- FAQ visible (apoya el schema) -->
+  <!-- FAQ -->
   <section id="faq" class="section">
     <div class="container">
       <h2>Preguntas frecuentes</h2>
@@ -497,88 +513,25 @@
 
   <!-- JSON-LD: Organization + Website -->
   <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"Organization",
-    "name":"CodeCraft",
-    "url":"https://www.codecraftedu.es/",
-    "sameAs":["https://wa.me/34697625964"],
-    "description":"Diseño y desarrollo web profesional para pymes y emprendedores."
-  }
+  {"@context":"https://schema.org","@type":"Organization","name":"CodeCraft","url":"https://www.codecraftedu.es/","sameAs":["https://wa.me/34697625964"],"description":"Diseño y desarrollo web profesional para pymes y emprendedores."}
   </script>
   <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"WebSite",
-    "name":"CodeCraft",
-    "url":"https://www.codecraftedu.es/",
-    "inLanguage":"es-ES",
-    "potentialAction":{
-      "@type":"ContactPoint",
-      "contactType":"customer support",
-      "url":"https://wa.me/34697625964"
-    }
-  }
+  {"@context":"https://schema.org","@type":"WebSite","name":"CodeCraft","url":"https://www.codecraftedu.es/","inLanguage":"es-ES","potentialAction":{"@type":"ContactPoint","contactType":"customer support","url":"https://wa.me/34697625964"}}
   </script>
 
-  <!-- JSON-LD: Servicio principal + catálogo de extras -->
+  <!-- JSON-LD: Servicio principal + extras -->
   <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"Service",
-    "name":"Diseño web · Plan Básico",
-    "provider":{"@type":"Organization","name":"CodeCraft","url":"https://www.codecraftedu.es/"},
-    "areaServed":"ES",
-    "offers":{
-      "@type":"Offer",
-      "priceCurrency":"EUR",
-      "price":"75",
-      "url":"https://www.codecraftedu.es/#servicios",
-      "availability":"https://schema.org/InStock"
-    },
-    "hasOfferCatalog":{
-      "@type":"OfferCatalog",
-      "name":"Extras de la web",
-      "itemListElement":[
-        {"@type":"Offer","name":"Logo","price":"30","priceCurrency":"EUR"},
-        {"@type":"Offer","name":"Tienda con catálogo","price":"150","priceCurrency":"EUR"},
-        {"@type":"Offer","name":"Formulario + Página Gracias","price":"30","priceCurrency":"EUR"},
-        {"@type":"Offer","name":"Barra informativa (marquesina)","price":"30","priceCurrency":"EUR"},
-        {"@type":"Offer","name":"Publicación SEO","price":"39","priceCurrency":"EUR"},
-        {"@type":"Offer","name":"Página adicional","price":"25","priceCurrency":"EUR"},
-        {"@type":"Offer","name":"Multiidioma","price":"59","priceCurrency":"EUR"},
-        {"@type":"Offer","name":"Google Maps & ficha negocio","price":"15","priceCurrency":"EUR"},
-        {"@type":"Offer","name":"Políticas legales básicas","price":"25","priceCurrency":"EUR"}
-      ]
-    }
-  }
+  {"@context":"https://schema.org","@type":"Service","name":"Diseño web · Plan Básico","provider":{"@type":"Organization","name":"CodeCraft","url":"https://www.codecraftedu.es/"},"areaServed":"ES","offers":{"@type":"Offer","priceCurrency":"EUR","price":"75","url":"https://www.codecraftedu.es/#servicios","availability":"https://schema.org/InStock"},"hasOfferCatalog":{"@type":"OfferCatalog","name":"Extras de la web","itemListElement":[{"@type":"Offer","name":"Logo","price":"30","priceCurrency":"EUR"},{"@type":"Offer","name":"Tienda con catálogo","price":"150","priceCurrency":"EUR"},{"@type":"Offer","name":"Formulario + Página Gracias","price":"30","priceCurrency":"EUR"},{"@type":"Offer","name":"Barra informativa (marquesina)","price":"30","priceCurrency":"EUR"},{"@type":"Offer","name":"Publicación SEO","price":"39","priceCurrency":"EUR"},{"@type":"Offer","name":"Página adicional","price":"25","priceCurrency":"EUR"},{"@type":"Offer","name":"Multiidioma","price":"59","priceCurrency":"EUR"},{"@type":"Offer","name":"Google Maps & ficha negocio","price":"15","priceCurrency":"EUR"},{"@type":"Offer","name":"Políticas legales básicas","price":"25","priceCurrency":"EUR"}]}}
   </script>
 
   <!-- JSON-LD: FAQPage -->
   <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"FAQPage",
-    "mainEntity":[
-      {"@type":"Question","name":"¿Cuánto cuesta la web básica?","acceptedAnswer":{"@type":"Answer","text":"El plan básico cuesta 75€ e incluye lema, 2 imágenes optimizadas, Inicio, Quiénes somos, Servicios y Contacto con botón de WhatsApp."}},
-      {"@type":"Question","name":"¿El dominio está incluido?","acceptedAnswer":{"@type":"Answer","text":"No. El dominio se paga aparte con cuota anual según el registrador. Podemos asesorarte para elegir el mejor."}},
-      {"@type":"Question","name":"¿Tiempo de entrega estimado?","acceptedAnswer":{"@type":"Answer","text":"Según contenido, el plan básico suele estar listo en 3–7 días laborables. Los extras pueden añadir tiempo adicional."}}
-    ]
-  }
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Cuánto cuesta la web básica?","acceptedAnswer":{"@type":"Answer","text":"El plan básico cuesta 75€ e incluye lema, 2 imágenes optimizadas, Inicio, Quiénes somos, Servicios y Contacto con botón de WhatsApp."}},{"@type":"Question","name":"¿El dominio está incluido?","acceptedAnswer":{"@type":"Answer","text":"No. El dominio se paga aparte con cuota anual según el registrador. Podemos asesorarte para elegir el mejor."}},{"@type":"Question","name":"¿Tiempo de entrega estimado?","acceptedAnswer":{"@type":"Answer","text":"Según contenido, el plan básico suele estar listo en 3–7 días laborables. Los extras pueden añadir tiempo adicional."}}]}
   </script>
 
-  <!-- JSON-LD: Breadcrumbs (secciones de una sola página) -->
+  <!-- JSON-LD: Breadcrumbs -->
   <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"BreadcrumbList",
-    "itemListElement":[
-      {"@type":"ListItem","position":1,"name":"Inicio","item":"https://www.codecraftedu.es/#inicio"},
-      {"@type":"ListItem","position":2,"name":"Quiénes somos","item":"https://www.codecraftedu.es/#sobre"},
-      {"@type":"ListItem","position":3,"name":"Servicios","item":"https://www.codecraftedu.es/#servicios"},
-      {"@type":"ListItem","position":4,"name":"Contacto","item":"https://www.codecraftedu.es/#contacto"}
-    ]
-  }
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://www.codecraftedu.es/#inicio"},{"@type":"ListItem","position":2,"name":"Quiénes somos","item":"https://www.codecraftedu.es/#sobre"},{"@type":"ListItem","position":3,"name":"Servicios","item":"https://www.codecraftedu.es/#servicios"},{"@type":"ListItem","position":4,"name":"Contacto","item":"https://www.codecraftedu.es/#contacto"}]}
   </script>
 </body>
 </html>
