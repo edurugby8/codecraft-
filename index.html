@@ -4,15 +4,31 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <meta name="description" content="CodeCraft: equipo profesional en diseño y desarrollo web, rendimiento y crecimiento digital para pymes y emprendedores." />
   <title>CodeCraft · Webs que impulsan tu negocio</title>
+  <meta name="description" content="Equipo profesional de diseño y desarrollo web. Sitios rápidos, seguros y hechos para convertir visitas en clientes. Plan básico desde 75€ y extras a medida." />
+  <link rel="canonical" href="https://www.codecraftedu.es/" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <meta name="theme-color" content="#16a34a" />
 
   <!-- Open Graph / Twitter -->
-  <meta property="og:title" content="CodeCraft · Webs que impulsan tu negocio">
-  <meta property="og:description" content="Equipo profesional de diseño y desarrollo web. Sitios rápidos, seguros y hechos para convertir visitas en clientes.">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:site_name" content="CodeCraft">
   <meta property="og:type" content="website">
+  <meta property="og:title" content="CodeCraft · Webs que impulsan tu negocio">
+  <meta property="og:description" content="Diseño y desarrollo web profesional. Plan básico 75€ + extras. Rendimiento, SEO y soporte.">
+  <meta property="og:url" content="https://www.codecraftedu.es/">
   <meta property="og:image" content="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=60">
   <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Hreflang -->
+  <link rel="alternate" href="https://www.codecraftedu.es/" hreflang="es-es">
+  <link rel="alternate" href="https://www.codecraftedu.es/" hreflang="x-default">
+
+  <!-- Sitemap (crea /sitemap.xml cuando lo tengas) -->
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+
+  <!-- Preload imagen hero para mejorar LCP -->
+  <link rel="preload" as="image" href="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1800&q=80" imagesrcset="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80 1200w, https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1800&q=80 1800w" imagesizes="100vw">
 
   <!-- Tipografía -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -44,7 +60,6 @@
       -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
     }
 
-    /* Utils */
     .container{max-width:1140px;margin:0 auto;padding:0 16px}
     .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
     section{scroll-margin-top:calc(var(--nav-h) + 24px)}
@@ -56,12 +71,10 @@
       display:flex;align-items:center;z-index:1000;
       background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,.3));
       backdrop-filter:blur(8px);
-      color:#fff;
-      transition:box-shadow .25s, background .25s;
+      color:#fff; transition:box-shadow .25s, background .25s;
     }
     nav.scrolled{background:#0f1f19cc;box-shadow:0 8px 24px rgba(0,0,0,.2)}
     .nav-inner{display:flex;align-items:center;justify-content:space-between;width:100%}
-    .logo-wrap{display:flex;align-items:center;gap:12px}
     .brand{font-weight:800;font-size:1.15rem;letter-spacing:.4px}
     .nav-links{list-style:none;display:flex;gap:10px}
     .nav-links a{
@@ -111,7 +124,7 @@
       margin:1.8rem auto 0; width:100%; max-width:720px;
       background:rgba(255,255,255,.06);
       border:1px solid rgba(255,255,255,.12);
-      border-radius:var(--radius-lg);
+      border-radius:20px;
       padding:18px;
       box-shadow:0 20px 40px rgba(0,0,0,.25);
       backdrop-filter:blur(8px);
@@ -125,53 +138,31 @@
     }
     .field::placeholder{color:#e5f6ecaa}
 
-    /* SECCIONES GENERALES */
+    /* SECCIONES */
     section.section{padding:72px 0}
-    section h2{
-      text-align:center;font-size:2rem;margin-bottom:10px;color:var(--primary-2); letter-spacing:.3px;
-    }
+    section h2{ text-align:center;font-size:2rem;margin-bottom:10px;color:var(--primary-2)}
     .subtle{color:var(--muted); text-align:center; margin-bottom:22px}
 
-    /* Cards / chips */
+    /* Cards */
     .grid-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
     .card{
-      background:#fff;border-radius:var(--radius);padding:22px 18px;
+      background:#fff;border-radius:16px;padding:22px 18px;
       box-shadow:var(--shadow-sm); border:1px solid #e6f2eb;
       transition:transform .2s, box-shadow .2s, border-color .2s;
     }
     .card:hover{transform:translateY(-6px); box-shadow:var(--shadow); border-color:#cfe9dc}
     .card h3{margin-bottom:6px;color:var(--ink)}
-    .price{display:inline-flex;align-items:center;gap:6px;margin-top:8px;padding:6px 10px;border-radius:999px;background:var(--chip);border:1px solid var(--chip-border);color:var(--primary-2);font-weight:800}
+    .price{display:inline-flex;align-items:center;gap:6px;margin-top:8px;padding:6px 10px;border-radius:999px;background:#ecfdf5;border:1px solid #cfe9dc;color:var(--primary-2);font-weight:800}
 
-    /* Metodología (con IA) */
-    .method{
-      background:#fff;border-radius:var(--radius-lg); padding:22px 20px; box-shadow:var(--shadow-sm);
-      border:1px solid #e6f2eb; overflow:hidden;
-    }
-    .method h3{ text-align:center; margin-bottom:12px; color:var(--primary-2)}
-    .method ol{
-      counter-reset: step;
-      list-style:none;
-      display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-      gap:12px; margin:0; padding:0;
-    }
-    .method li{
-      position:relative; padding:12px 12px 12px 56px;
-      border:1px solid #e6f2eb; border-radius:12px; background:#fff;
-      min-height:56px; display:flex; align-items:center;
-    }
-    .method li::before{
-      counter-increment: step; content: counter(step);
-      position:absolute; left:12px; top:50%; transform:translateY(-50%);
-      width:30px; height:30px; border-radius:999px; display:grid; place-items:center;
-      background:linear-gradient(135deg,var(--primary),var(--primary-2)); color:#fff; font-weight:800;
-      box-shadow:0 6px 12px rgba(22,163,74,.25);
-    }
+    /* Metodología (con IA y numeración) */
+    .method{background:#fff;border-radius:20px;padding:22px 20px;box-shadow:var(--shadow-sm);border:1px solid #e6f2eb}
+    .method h3{text-align:center;margin-bottom:12px;color:var(--primary-2)}
+    .method ol{counter-reset:step;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:0;padding:0}
+    .method li{position:relative;padding:12px 12px 12px 56px;border:1px solid #e6f2eb;border-radius:12px;min-height:56px;display:flex;align-items:center}
+    .method li::before{counter-increment:step;content:counter(step);position:absolute;left:12px;top:50%;transform:translateY(-50%);width:30px;height:30px;border-radius:999px;display:grid;place-items:center;background:linear-gradient(135deg,var(--primary),var(--primary-2));color:#fff;font-weight:800;box-shadow:0 6px 12px rgba(22,163,74,.25)}
 
     /* Plan destacado de diseño web */
-    .plan{
-      background:#fff;border:1px solid #e6f2eb;border-radius:24px;padding:22px 22px;box-shadow:var(--shadow-sm)
-    }
+    .plan{background:#fff;border:1px solid #e6f2eb;border-radius:24px;padding:22px;box-shadow:var(--shadow-sm)}
     .plan-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:8px}
     .badge{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;background:#f0fdf4;border:1px solid #bbf7d0;color:#166534;font-weight:800;font-size:.9rem}
     .plan h3{font-size:1.35rem;margin:0}
@@ -183,16 +174,12 @@
 
     /* Valor */
     .valor-list{list-style:none;padding:0;font-size:1.05rem;line-height:1.8}
-    .valor-img{width:100%;border-radius:20px; box-shadow:var(--shadow); border:1px solid #e6f2eb}
+    .valor-img{width:100%;border-radius:20px;box-shadow:var(--shadow);border:1px solid #e6f2eb}
 
     /* CTA WHATSAPP */
     #contacto{text-align:center;padding-bottom:80px}
-    .btn-whatsapp{
-      display:inline-flex;align-items:center;gap:10px;margin-top:14px;
-      padding:12px 22px;border-radius:999px;background:#25d366;color:#fff;font-weight:800;text-decoration:none;
-      box-shadow:0 10px 20px rgba(37,211,102,.35); transition:transform .2s, filter .2s;
-    }
-    .btn-whatsapp:hover{transform:translateY(-2px); filter:brightness(1.05)}
+    .btn-whatsapp{display:inline-flex;align-items:center;gap:10px;margin-top:14px;padding:12px 22px;border-radius:999px;background:#25d366;color:#fff;font-weight:800;text-decoration:none;box-shadow:0 10px 20px rgba(37,211,102,.35)}
+    .btn-whatsapp:hover{transform:translateY(-2px);filter:brightness(1.05)}
 
     /* MARQUESINA */
     .marquesina{width:100%;overflow:hidden;white-space:nowrap;padding:14px 0;background:#001f3f;box-shadow:0 2px 6px rgba(0,0,0,.2)}
@@ -200,10 +187,9 @@
     .marquesina span{font-size:1.05rem;color:#fff;font-weight:800;margin-right:4rem;display:inline-block}
     @keyframes scroll-marquesina{0%{transform:translateX(0)}100%{transform:translateX(-100%)}}
 
-    /* FOOTER */
     footer{background:#0d0d0d;color:#e2e8f0;text-align:center;padding:28px 12px}
 
-    /* LOADER con partículas */
+    /* LOADER */
     #loader{position:fixed;inset:0;background:#0a0f0c;z-index:2000;display:flex;align-items:center;justify-content:center;transition:opacity .8s,visibility .8s}
     #loader.fade-out{opacity:0;visibility:hidden}
     #particles{position:absolute;inset:0;z-index:0}
@@ -211,22 +197,16 @@
     .loader-content img{width:160px;height:auto;animation:pulse 2s infinite}
     @keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.08)}100%{transform:scale(1)}}
 
-    /* Reveal on scroll */
     .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease, transform .6s ease}
     .reveal.show{opacity:1;transform:none}
 
-    /* Mobile */
     @media (max-width:900px){
-      .nav-links{position:absolute; top:var(--nav-h); right:16px; left:16px; padding:12px;
-        background:#0f1f19; border:1px solid rgba(255,255,255,.1); border-radius:14px; display:none; flex-direction:column; gap:8px}
+      .nav-links{position:absolute;top:var(--nav-h);right:16px;left:16px;padding:12px;background:#0f1f19;border:1px solid rgba(255,255,255,.1);border-radius:14px;display:none;flex-direction:column;gap:8px}
       .nav-links.open{display:flex}
       .nav-toggle{display:block}
       .form-row{grid-template-columns:1fr}
     }
-    @media (prefers-reduced-motion:reduce){
-      .marquesina-contenido{animation:none}
-      .btn,.card,*{transition:none}
-    }
+    @media (prefers-reduced-motion:reduce){.marquesina-contenido{animation:none}.btn,.card,*{transition:none}}
   </style>
 </head>
 <body>
@@ -237,11 +217,9 @@
   </div>
 
   <!-- NAV -->
-  <nav id="topnav">
+  <nav id="topnav" aria-label="Navegación principal">
     <div class="container nav-inner">
-      <div class="logo-wrap">
-        <span class="brand">CodeCraft</span>
-      </div>
+      <a class="brand" href="#inicio">CodeCraft</a>
       <button class="nav-toggle" aria-label="Abrir menú" aria-controls="menu" aria-expanded="false">☰</button>
       <ul id="menu" class="nav-links">
         <li><a href="#inicio">Inicio</a></li>
@@ -261,7 +239,7 @@
 
       <!-- Formulario rápido -->
       <div class="quick-form reveal" style="margin-top:2rem">
-        <form action="https://formsubmit.co/edubabarro8.5@gmail.com" method="POST">
+        <form action="https://formsubmit.co/edubabarro8.5@gmail.com" method="POST" aria-label="Formulario de contacto rápido">
           <input type="text" name="_honey" class="sr-only" tabindex="-1" autocomplete="off">
           <input type="hidden" name="_captcha" value="false">
           <input type="hidden" name="_subject" value="Nueva solicitud desde CodeCraft">
@@ -320,7 +298,7 @@
         </div>
       </div>
 
-      <!-- Metodología (con paso IA añadido y FIX visual) -->
+      <!-- Metodología con IA -->
       <div class="method container reveal" style="margin-top:28px">
         <h3>Nuestra metodología</h3>
         <ol>
@@ -335,23 +313,23 @@
     </div>
   </section>
 
-  <!-- SERVICIOS (Foco en Diseño Web + precios más bajos) -->
-  <section id="servicios" class="section">
+  <!-- SERVICIOS (SEO: texto claro + precios) -->
+  <section id="servicios" class="section" itemscope itemtype="https://schema.org/Service">
     <div class="container">
       <h2>Servicios</h2>
-      <p class="subtle">Nos especializamos en <strong>diseño web</strong>. El resto de servicios complementan tu presencia digital.</p>
+      <p class="subtle">Nos especializamos en <strong>Diseño Web</strong>. El resto de servicios complementan tu presencia digital.</p>
 
       <!-- Plan destacado -->
-      <div class="plan reveal">
+      <div class="plan reveal" itemprop="hasOfferCatalog" itemscope itemtype="https://schema.org/Offer">
         <div class="plan-head">
-          <h3>Diseño web · Plan Básico</h3>
+          <h3 itemprop="name">Diseño web · Plan Básico</h3>
           <span class="badge">Más elegido</span>
         </div>
         <div class="plan-price">
-          <span class="num">75&nbsp;€</span>
-          <span class="price">precio cerrado</span>
+          <span class="num" itemprop="price" content="75">75&nbsp;€</span>
+          <span class="price" itemprop="priceCurrency" content="EUR">precio cerrado</span>
         </div>
-        <p class="subtle" style="margin-top:2px">Ideal para empezar con una web clara y lista para convertir.</p>
+        <p class="subtle" style="margin-top:2px" itemprop="description">Ideal para empezar con una web clara y lista para convertir.</p>
 
         <ul class="plan-features" style="margin-top:8px">
           <li>• Lema de la empresa (propio o lo creamos nosotros)</li>
@@ -362,7 +340,7 @@
 
         <p class="footnote">* El <strong>dominio</strong> se paga aparte (cuota anual según registrador). Hosting opcional.</p>
 
-        <h4 style="margin:14px 0 6px">Extras opcionales</h4>
+        <h3 style="margin:14px 0 6px">Extras opcionales</h3>
         <div class="grid-cards" style="margin-top:4px">
           <div class="card"><h3>Logo</h3><p>Diseño de logotipo en PNG/SVG + guía breve de uso.</p><span class="price">30&nbsp;€</span></div>
           <div class="card"><h3>Tienda con catálogo</h3><p>Listado de productos, fichas y carrito básico.</p><span class="price">150&nbsp;€</span></div>
@@ -376,7 +354,7 @@
         </div>
       </div>
 
-      <!-- Otros servicios (secundarios, precios revisados a la baja) -->
+      <!-- Otros servicios -->
       <h3 style="text-align:center;margin:28px 0 12px;color:var(--primary-2)">Otros servicios</h3>
       <div class="grid-cards reveal">
         <div class="card">
@@ -417,8 +395,8 @@
   <section id="valor" class="section">
     <div class="container">
       <h2>Creando webs de valor</h2>
-      <div style="display:flex; flex-wrap:wrap; align-items:center; gap:24px" class="reveal">
-        <div style="flex:1; min-width:280px">
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:24px" class="reveal">
+        <div style="flex:1;min-width:280px">
           <ul class="valor-list">
             <li>✔ Escuchamos tus ideas y visión</li>
             <li>✔ Nos adaptamos a tus objetivos</li>
@@ -427,8 +405,29 @@
             <li>✔ Transmitimos el valor de tus productos</li>
           </ul>
         </div>
-        <div style="flex:1; min-width:280px">
-          <img class="valor-img" src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80" alt="Trabajo creativo en equipo">
+        <div style="flex:1;min-width:280px">
+          <img class="valor-img" src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80" alt="Equipo creando una web moderna" width="800" height="533" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ visible (apoya el schema) -->
+  <section id="faq" class="section">
+    <div class="container">
+      <h2>Preguntas frecuentes</h2>
+      <div class="grid-cards reveal">
+        <div class="card">
+          <h3>¿Cuánto cuesta la web básica?</h3>
+          <p>El plan básico cuesta <strong>75€</strong> e incluye lema, 2 imágenes optimizadas, Inicio, Quiénes somos, Servicios y Contacto con botón de WhatsApp.</p>
+        </div>
+        <div class="card">
+          <h3>¿El dominio está incluido?</h3>
+          <p>No. El <strong>dominio</strong> se paga aparte con cuota anual según el registrador. Podemos asesorarte para elegir el mejor.</p>
+        </div>
+        <div class="card">
+          <h3>¿Tiempo de entrega estimado?</h3>
+          <p>Según contenido, el plan básico suele estar listo en <strong>3–7 días laborables</strong>. Extras pueden añadir tiempo adicional.</p>
         </div>
       </div>
     </div>
@@ -439,7 +438,7 @@
     <div class="container reveal" style="text-align:center">
       <h2>Contacto</h2>
       <p>¿Te interesa una web? Escríbenos y pide presupuesto sin compromiso:</p>
-      <a class="btn-whatsapp" href="https://wa.me/34697625964" target="_blank" rel="noopener" aria-label="Abrir WhatsApp">
+      <a class="btn-whatsapp" href="https://wa.me/34697625964" target="_blank" rel="noopener nofollow" aria-label="Abrir WhatsApp">
         <span aria-hidden="true">💬</span> Hablar por WhatsApp
       </a>
     </div>
@@ -461,17 +460,12 @@
   <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js" defer></script>
 
   <script>
-    // NAV: sombra al hacer scroll + menú móvil
+    // Navegación y menú móvil
     const nav = document.getElementById('topnav');
     const menu = document.getElementById('menu');
     const toggle = document.querySelector('.nav-toggle');
-
-    function onScroll(){
-      if(window.scrollY > 8){ nav.classList.add('scrolled'); }
-      else{ nav.classList.remove('scrolled'); }
-    }
+    function onScroll(){ window.scrollY > 8 ? nav.classList.add('scrolled') : nav.classList.remove('scrolled'); }
     window.addEventListener('scroll', onScroll); onScroll();
-
     toggle?.addEventListener('click', () => {
       const isOpen = menu.classList.toggle('open');
       toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
@@ -479,32 +473,112 @@
 
     // Reveal on scroll
     const io = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{
-        if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target); }
-      });
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target); } });
     },{threshold:.12});
     document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-    // Loader con partículas y salida suave
+    // Loader con partículas
     window.addEventListener('load', async () => {
       try{
         if(window.tsParticles){
           await tsParticles.load('particles', {
             background: { color: { value:'#0a0f0c' } },
             particles:{
-              number:{ value:60 },
-              color:{ value:'#16a34a' },
-              opacity:{ value:0.45 },
-              size:{ value:3 },
-              move:{ enable:true, speed:0.6 },
+              number:{ value:60 }, color:{ value:'#16a34a' }, opacity:{ value:0.45 },
+              size:{ value:3 }, move:{ enable:true, speed:0.6 },
               links:{ enable:true, color:'#16a34a', opacity:0.3, distance:100 }
-            },
-            detectRetina:true
+            }, detectRetina:true
           });
         }
       }catch(_e){}
       setTimeout(() => document.getElementById('loader').classList.add('fade-out'), 1200);
     });
+  </script>
+
+  <!-- JSON-LD: Organization + Website -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Organization",
+    "name":"CodeCraft",
+    "url":"https://www.codecraftedu.es/",
+    "sameAs":["https://wa.me/34697625964"],
+    "description":"Diseño y desarrollo web profesional para pymes y emprendedores."
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebSite",
+    "name":"CodeCraft",
+    "url":"https://www.codecraftedu.es/",
+    "inLanguage":"es-ES",
+    "potentialAction":{
+      "@type":"ContactPoint",
+      "contactType":"customer support",
+      "url":"https://wa.me/34697625964"
+    }
+  }
+  </script>
+
+  <!-- JSON-LD: Servicio principal + catálogo de extras -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Service",
+    "name":"Diseño web · Plan Básico",
+    "provider":{"@type":"Organization","name":"CodeCraft","url":"https://www.codecraftedu.es/"},
+    "areaServed":"ES",
+    "offers":{
+      "@type":"Offer",
+      "priceCurrency":"EUR",
+      "price":"75",
+      "url":"https://www.codecraftedu.es/#servicios",
+      "availability":"https://schema.org/InStock"
+    },
+    "hasOfferCatalog":{
+      "@type":"OfferCatalog",
+      "name":"Extras de la web",
+      "itemListElement":[
+        {"@type":"Offer","name":"Logo","price":"30","priceCurrency":"EUR"},
+        {"@type":"Offer","name":"Tienda con catálogo","price":"150","priceCurrency":"EUR"},
+        {"@type":"Offer","name":"Formulario + Página Gracias","price":"30","priceCurrency":"EUR"},
+        {"@type":"Offer","name":"Barra informativa (marquesina)","price":"30","priceCurrency":"EUR"},
+        {"@type":"Offer","name":"Publicación SEO","price":"39","priceCurrency":"EUR"},
+        {"@type":"Offer","name":"Página adicional","price":"25","priceCurrency":"EUR"},
+        {"@type":"Offer","name":"Multiidioma","price":"59","priceCurrency":"EUR"},
+        {"@type":"Offer","name":"Google Maps & ficha negocio","price":"15","priceCurrency":"EUR"},
+        {"@type":"Offer","name":"Políticas legales básicas","price":"25","priceCurrency":"EUR"}
+      ]
+    }
+  }
+  </script>
+
+  <!-- JSON-LD: FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"¿Cuánto cuesta la web básica?","acceptedAnswer":{"@type":"Answer","text":"El plan básico cuesta 75€ e incluye lema, 2 imágenes optimizadas, Inicio, Quiénes somos, Servicios y Contacto con botón de WhatsApp."}},
+      {"@type":"Question","name":"¿El dominio está incluido?","acceptedAnswer":{"@type":"Answer","text":"No. El dominio se paga aparte con cuota anual según el registrador. Podemos asesorarte para elegir el mejor."}},
+      {"@type":"Question","name":"¿Tiempo de entrega estimado?","acceptedAnswer":{"@type":"Answer","text":"Según contenido, el plan básico suele estar listo en 3–7 días laborables. Los extras pueden añadir tiempo adicional."}}
+    ]
+  }
+  </script>
+
+  <!-- JSON-LD: Breadcrumbs (secciones de una sola página) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"BreadcrumbList",
+    "itemListElement":[
+      {"@type":"ListItem","position":1,"name":"Inicio","item":"https://www.codecraftedu.es/#inicio"},
+      {"@type":"ListItem","position":2,"name":"Quiénes somos","item":"https://www.codecraftedu.es/#sobre"},
+      {"@type":"ListItem","position":3,"name":"Servicios","item":"https://www.codecraftedu.es/#servicios"},
+      {"@type":"ListItem","position":4,"name":"Contacto","item":"https://www.codecraftedu.es/#contacto"}
+    ]
+  }
   </script>
 </body>
 </html>
