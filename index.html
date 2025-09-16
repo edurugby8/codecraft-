@@ -30,6 +30,9 @@
   <!-- Preload imagen hero -->
   <link rel="preload" as="image" href="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1800&q=80" imagesrcset="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80 1200w, https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1800&q=80 1800w" imagesizes="100vw">
 
+  <!-- Preload LOGO (usa tu carpeta imagen/) -->
+  <link rel="preload" as="image" href="imagen/logo-codecraft.png?v=3">
+
   <!-- Tipografía -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -37,105 +40,54 @@
 
   <style>
     :root{
-      --primary:#16a34a;
-      --primary-2:#0d8b3f;
-      --bg:#f4fff7;
-      --ink:#0f172a;
-      --muted:#6b7280;
-      --nav-h:72px;
-      --radius:16px;
-      --radius-lg:20px;
-      --shadow:0 10px 30px rgba(0,0,0,.15);
-      --shadow-sm:0 6px 16px rgba(0,0,0,.10);
-      --glass:rgba(255,255,255,.08);
-      --chip:#ecfdf5;
-      --chip-border:#cfe9dc;
+      --primary:#16a34a; --primary-2:#0d8b3f; --bg:#f4fff7; --ink:#0f172a; --muted:#6b7280;
+      --nav-h:72px; --radius:16px; --radius-lg:20px; --shadow:0 10px 30px rgba(0,0,0,.15);
+      --shadow-sm:0 6px 16px rgba(0,0,0,.10); --glass:rgba(255,255,255,.08);
+      --chip:#ecfdf5; --chip-border:#cfe9dc;
     }
     *{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%}
     html{scroll-behavior:smooth}
-    body{
-      font-family:'Rubik',system-ui,Segoe UI,Roboto,Arial,sans-serif;
-      background:var(--bg); color:var(--ink); line-height:1.6;
-      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
-    }
-
+    body{font-family:'Rubik',system-ui,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg); color:var(--ink); line-height:1.6;-webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;}
     .container{max-width:1140px;margin:0 auto;padding:0 16px}
     .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
     section{scroll-margin-top:calc(var(--nav-h) + 24px)}
     a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible{outline:3px solid rgba(22,163,74,.35);outline-offset:2px;border-radius:8px}
 
     /* NAV */
-    nav{
-      position:fixed;inset:0 0 auto 0;height:var(--nav-h);
-      display:flex;align-items:center;z-index:1000;
-      background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,.3));
-      backdrop-filter:blur(8px);
-      color:#fff; transition:box-shadow .25s, background .25s;
-    }
+    nav{position:fixed;inset:0 0 auto 0;height:var(--nav-h);display:flex;align-items:center;z-index:1000;background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,.3));backdrop-filter:blur(8px);color:#fff; transition:box-shadow .25s, background .25s;}
     nav.scrolled{background:#0f1f19cc;box-shadow:0 8px 24px rgba(0,0,0,.2)}
     .nav-inner{display:flex;align-items:center;justify-content:space-between;width:100%}
-    .brand{font-weight:800;font-size:1.15rem;letter-spacing:.4px}
+
+    /* Marca (logo + texto) */
+    .brand{display:inline-flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font-weight:800;font-size:1.05rem;letter-spacing:.3px}
+    .brand img{display:block;height:48px;width:auto} /* AJUSTA aquí tamaño del logo */
+    .brand picture{display:block}
+
     .nav-links{list-style:none;display:flex;gap:10px}
-    .nav-links a{
-      color:#fff;text-decoration:none;font-weight:700;
-      padding:9px 14px;border-radius:999px;background:var(--glass);
-      transition:transform .2s, background .2s, box-shadow .2s;
-    }
+    .nav-links a{color:#fff;text-decoration:none;font-weight:700;padding:9px 14px;border-radius:999px;background:var(--glass);transition:transform .2s, background .2s, box-shadow .2s;}
     .nav-links a:hover{background:rgba(255,255,255,.14);transform:translateY(-1px);box-shadow:0 6px 16px rgba(0,0,0,.15)}
     .nav-toggle{display:none;background:none;border:none;color:#fff;font-size:26px;cursor:pointer}
 
     /* HERO */
-    .hero{
-      position:relative;min-height:calc(100vh - var(--nav-h));
-      display:grid;place-items:center;padding-top:var(--nav-h);
-      color:#fff;isolation:isolate;
-      background:
+    .hero{position:relative;min-height:calc(100vh - var(--nav-h));display:grid;place-items:center;padding-top:var(--nav-h);color:#fff;isolation:isolate;background:
         radial-gradient(60% 60% at 75% 25%, rgba(22,163,74,.35) 0%, rgba(22,163,74,0) 60%),
         linear-gradient(rgba(0,0,0,.58),rgba(0,0,0,.58)),
-        url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1800&q=80') center/cover no-repeat;
-    }
-    .hero::after{
-      content:""; position:absolute; left:0; right:0; bottom:-1px; height:10px;
-      background:linear-gradient(90deg,transparent,rgba(22,163,74,.9),transparent);
-      filter:blur(.5px);
-    }
+        url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1800&q=80') center/cover no-repeat;}
+    .hero::after{content:""; position:absolute; left:0; right:0; bottom:-1px; height:10px;background:linear-gradient(90deg,transparent,rgba(22,163,74,.9),transparent);filter:blur(.5px);}
     .hero-inner{max-width:980px;text-align:center;padding:40px 16px}
-    .hero h1{
-      font-weight:800;letter-spacing:.2px;line-height:1.1;
-      font-size:clamp(2rem,7vw,3.4rem);
-      text-wrap:balance; text-shadow:0 2px 20px rgba(0,0,0,.45);
-      margin-bottom:.35rem;
-    }
+    .hero h1{font-weight:800;letter-spacing:.2px;line-height:1.1;font-size:clamp(2rem,7vw,3.4rem);text-wrap:balance; text-shadow:0 2px 20px rgba(0,0,0,.45);margin-bottom:.35rem;}
     .hero p{max-width:760px;margin:0 auto 1.1rem;font-size:clamp(1rem,2.8vw,1.22rem);color:#e6f6ec}
-    .btn{
-      display:inline-block;border:none;border-radius:40px;padding:14px 26px;font-weight:800;cursor:pointer;
-      transition:transform .2s, filter .2s, box-shadow .2s; will-change:transform;
-    }
-    .btn-primary{
-      background:linear-gradient(135deg,var(--primary),var(--primary-2));
-      color:#fff; box-shadow:0 12px 24px rgba(22,163,74,.35);
-    }
+    .btn{display:inline-block;border:none;border-radius:40px;padding:14px 26px;font-weight:800;cursor:pointer;transition:transform .2s, filter .2s, box-shadow .2s; will-change:transform;}
+    .btn-primary{background:linear-gradient(135deg,var(--primary),var(--primary-2));color:#fff; box-shadow:0 12px 24px rgba(22,163,74,.35);}
     .btn-primary:hover{filter:brightness(1.06);transform:translateY(-2px)}
     .btn-primary:active{transform:translateY(0)}
 
     /* Quick form card */
-    .quick-form{
-      margin:1.8rem auto 0; width:100%; max-width:720px;
-      background:rgba(255,255,255,.06);
-      border:1px solid rgba(255,255,255,.12);
-      border-radius:20px;
-      padding:18px;
-      box-shadow:0 20px 40px rgba(0,0,0,.25);
-      backdrop-filter:blur(8px);
-      text-align:left;
-    }
+    .quick-form{margin:1.8rem auto 0; width:100%; max-width:720px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:18px;box-shadow:0 20px 40px rgba(0,0,0,.25);backdrop-filter:blur(8px);text-align:left;}
     .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
     .form-row .full{grid-column:1/-1}
-    .field{
-      width:100%; padding:.85rem .95rem; border-radius:12px; border:1px solid rgba(255,255,255,.35);
-      background:rgba(255,255,255,.12); color:#fff; font-size:1rem;
-    }
+    .field{width:100%; padding:.85rem .95rem; border-radius:12px; border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.12); color:#fff; font-size:1rem;}
     .field::placeholder{color:#e5f6ecaa}
 
     /* SECCIONES */
@@ -145,23 +97,19 @@
 
     /* Cards */
     .grid-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
-    .card{
-      background:#fff;border-radius:16px;padding:22px 18px;
-      box-shadow:var(--shadow-sm); border:1px solid #e6f2eb;
-      transition:transform .2s, box-shadow .2s, border-color .2s;
-    }
+    .card{background:#fff;border-radius:16px;padding:22px 18px;box-shadow:var(--shadow-sm); border:1px solid #e6f2eb;transition:transform .2s, box-shadow .2s, border-color .2s;}
     .card:hover{transform:translateY(-6px); box-shadow:var(--shadow); border-color:#cfe9dc}
     .card h3{margin-bottom:6px;color:var(--ink)}
     .price{display:inline-flex;align-items:center;gap:6px;margin-top:8px;padding:6px 10px;border-radius:999px;background:#ecfdf5;border:1px solid #cfe9dc;color:var(--primary-2);font-weight:800}
 
-    /* Metodología (con IA y numeración) */
+    /* Metodología */
     .method{background:#fff;border-radius:20px;padding:22px 20px;box-shadow:var(--shadow-sm);border:1px solid #e6f2eb}
     .method h3{text-align:center;margin-bottom:12px;color:var(--primary-2)}
     .method ol{counter-reset:step;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:0;padding:0}
     .method li{position:relative;padding:12px 12px 12px 56px;border:1px solid #e6f2eb;border-radius:12px;min-height:56px;display:flex;align-items:center}
     .method li::before{counter-increment:step;content:counter(step);position:absolute;left:12px;top:50%;transform:translateY(-50%);width:30px;height:30px;border-radius:999px;display:grid;place-items:center;background:linear-gradient(135deg,var(--primary),var(--primary-2));color:#fff;font-weight:800;box-shadow:0 6px 12px rgba(22,163,74,.25)}
 
-    /* Plan destacado de diseño web */
+    /* Plan destacado */
     .plan{background:#fff;border:1px solid #e6f2eb;border-radius:24px;padding:22px;box-shadow:var(--shadow-sm)}
     .plan-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:8px}
     .badge{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;background:#f0fdf4;border:1px solid #bbf7d0;color:#166534;font-weight:800;font-size:.9rem}
@@ -172,14 +120,9 @@
     .plan-price .num{font-size:2rem;font-weight:800;color:var(--primary-2)}
     .footnote{font-size:.92rem;color:#64748b;margin-top:8px}
 
-    /* Valor (FIX imagen: contenedor con aspect-ratio y object-fit) */
+    /* Valor */
     .valor-list{list-style:none;padding:0;font-size:1.05rem;line-height:1.8}
-    .valor-media{
-      position:relative;border-radius:20px;overflow:hidden;
-      box-shadow:var(--shadow);border:1px solid #e6f2eb;
-      aspect-ratio:16/10; /* marco estable en todos los tamaños */
-      max-height:560px;
-    }
+    .valor-media{position:relative;border-radius:20px;overflow:hidden;box-shadow:var(--shadow);border:1px solid #e6f2eb;aspect-ratio:16/10;max-height:560px;}
     .valor-media img{width:100%;height:100%;display:block;object-fit:cover}
 
     /* CTA WHATSAPP */
@@ -219,16 +162,25 @@
   <!-- LOADER -->
   <div id="loader" aria-hidden="true">
     <canvas id="particles" aria-hidden="true"></canvas>
-    <div class="loader-content"></div>
+    <div class="loader-content">
+      <!-- Logo en loader (carpeta imagen/) -->
+      <img src="imagen/logo-codecraft.png?v=3" alt="CodeCraft">
+    </div>
   </div>
 
   <!-- NAV -->
   <nav id="topnav" aria-label="Navegación principal">
     <div class="container nav-inner">
-      <a class="brand" href="#inicio">
-        <img src="imagen/logo-codecraft.png" alt="CodeCraft — Webs que impulsan tu negocio" style="height:40px;width:auto;vertical-align:middle;margin-right:8px">
-        CodeCraft
+      <!-- Marca con <picture> usando tu carpeta imagen/ -->
+      <a class="brand" href="#inicio" aria-label="Ir al inicio">
+        <picture>
+          <!-- Si SUBES el SVG, se usará automáticamente -->
+          <source srcset="imagen/logo-codecraft.svg?v=3" type="image/svg+xml">
+          <img src="imagen/logo-codecraft.png?v=3" alt="CodeCraft — Webs que impulsan tu negocio" loading="eager" decoding="async">
+        </picture>
+        <span>CodeCraft</span>
       </a>
+
       <button class="nav-toggle" aria-label="Abrir menú" aria-controls="menu" aria-expanded="false">☰</button>
       <ul id="menu" class="nav-links">
         <li><a href="#inicio">Inicio</a></li>
@@ -307,7 +259,6 @@
         </div>
       </div>
 
-      <!-- Metodología con IA -->
       <div class="method container reveal" style="margin-top:28px">
         <h3>Nuestra metodología</h3>
         <ol>
@@ -328,7 +279,6 @@
       <h2>Servicios</h2>
       <p class="subtle">Nos especializamos en <strong>Diseño Web</strong>. El resto de servicios complementan tu presencia digital.</p>
 
-      <!-- Plan destacado -->
       <div class="plan reveal" itemprop="hasOfferCatalog" itemscope itemtype="https://schema.org/Offer">
         <div class="plan-head">
           <h3 itemprop="name">Diseño web · Plan Básico</h3>
@@ -363,44 +313,19 @@
         </div>
       </div>
 
-      <!-- Otros servicios -->
       <h3 style="text-align:center;margin:28px 0 12px;color:var(--primary-2)">Otros servicios</h3>
       <div class="grid-cards reveal">
-        <div class="card">
-          <h3>Mantenimiento Web</h3>
-          <p>Actualizaciones, copias de seguridad y ajustes técnicos.</p>
-          <span class="price">desde 29&nbsp;€/mes</span>
-        </div>
-        <div class="card">
-          <h3>Asesoría &amp; SEO</h3>
-          <p>Auditoría técnica y contenidos para mejorar visibilidad.</p>
-          <span class="price">desde 99&nbsp;€</span>
-        </div>
-        <div class="card">
-          <h3>Gestión de redes sociales</h3>
-          <p>Plan editorial y publicaciones mensuales.</p>
-          <span class="price">desde 99&nbsp;€/mes</span>
-        </div>
-        <div class="card">
-          <h3>Reels / Vídeo corto</h3>
-          <p>Guion, edición y subtítulos para Instagram/TikTok.</p>
-          <span class="price">desde 39&nbsp;€/pieza</span>
-        </div>
-        <div class="card">
-          <h3>Creación de códigos QR</h3>
-          <p>QR estáticos/dinámicos con tu marca, para impresión o campañas.</p>
-          <span class="price">desde 15&nbsp;€</span>
-        </div>
-        <div class="card">
-          <h3>Creación de logos</h3>
-          <p>Identidad visual lista para web y redes.</p>
-          <span class="price">30&nbsp;€</span>
-        </div>
+        <div class="card"><h3>Mantenimiento Web</h3><p>Actualizaciones, copias de seguridad y ajustes técnicos.</p><span class="price">desde 29&nbsp;€/mes</span></div>
+        <div class="card"><h3>Asesoría &amp; SEO</h3><p>Auditoría técnica y contenidos para mejorar visibilidad.</p><span class="price">desde 99&nbsp;€</span></div>
+        <div class="card"><h3>Gestión de redes sociales</h3><p>Plan editorial y publicaciones mensuales.</p><span class="price">desde 99&nbsp;€/mes</span></div>
+        <div class="card"><h3>Reels / Vídeo corto</h3><p>Guion, edición y subtítulos para Instagram/TikTok.</p><span class="price">desde 39&nbsp;€/pieza</span></div>
+        <div class="card"><h3>Creación de códigos QR</h3><p>QR estáticos/dinámicos con tu marca, para impresión o campañas.</p><span class="price">desde 15&nbsp;€</span></div>
+        <div class="card"><h3>Creación de logos</h3><p>Identidad visual lista para web y redes.</p><span class="price">30&nbsp;€</span></div>
       </div>
     </div>
   </section>
 
-  <!-- VALOR (FIX imagen) -->
+  <!-- VALOR -->
   <section id="valor" class="section">
     <div class="container">
       <h2>Creando webs de valor</h2>
@@ -514,25 +439,19 @@
     });
   </script>
 
-  <!-- JSON-LD: Organization + Website -->
+  <!-- JSON-LD -->
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"Organization","name":"CodeCraft","url":"https://www.codecraftedu.es/","sameAs":["https://wa.me/34697625964"],"description":"Diseño y desarrollo web profesional para pymes y emprendedores."}
   </script>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"WebSite","name":"CodeCraft","url":"https://www.codecraftedu.es/","inLanguage":"es-ES","potentialAction":{"@type":"ContactPoint","contactType":"customer support","url":"https://wa.me/34697625964"}}
   </script>
-
-  <!-- JSON-LD: Servicio principal + extras -->
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"Service","name":"Diseño web · Plan Básico","provider":{"@type":"Organization","name":"CodeCraft","url":"https://www.codecraftedu.es/"},"areaServed":"ES","offers":{"@type":"Offer","priceCurrency":"EUR","price":"75","url":"https://www.codecraftedu.es/#servicios","availability":"https://schema.org/InStock"},"hasOfferCatalog":{"@type":"OfferCatalog","name":"Extras de la web","itemListElement":[{"@type":"Offer","name":"Logo","price":"30","priceCurrency":"EUR"},{"@type":"Offer","name":"Tienda con catálogo","price":"150","priceCurrency":"EUR"},{"@type":"Offer","name":"Formulario + Página Gracias","price":"30","priceCurrency":"EUR"},{"@type":"Offer","name":"Barra informativa (marquesina)","price":"30","priceCurrency":"EUR"},{"@type":"Offer","name":"Publicación SEO","price":"39","priceCurrency":"EUR"},{"@type":"Offer","name":"Página adicional","price":"25","priceCurrency":"EUR"},{"@type":"Offer","name":"Multiidioma","price":"59","priceCurrency":"EUR"},{"@type":"Offer","name":"Google Maps & ficha negocio","price":"15","priceCurrency":"EUR"},{"@type":"Offer","name":"Políticas legales básicas","price":"25","priceCurrency":"EUR"}]}}
   </script>
-
-  <!-- JSON-LD: FAQPage -->
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Cuánto cuesta la web básica?","acceptedAnswer":{"@type":"Answer","text":"El plan básico cuesta 75€ e incluye lema, 2 imágenes optimizadas, Inicio, Quiénes somos, Servicios y Contacto con botón de WhatsApp."}},{"@type":"Question","name":"¿El dominio está incluido?","acceptedAnswer":{"@type":"Answer","text":"No. El dominio se paga aparte con cuota anual según el registrador. Podemos asesorarte para elegir el mejor."}},{"@type":"Question","name":"¿Tiempo de entrega estimado?","acceptedAnswer":{"@type":"Answer","text":"Según contenido, el plan básico suele estar listo en 3–7 días laborables. Los extras pueden añadir tiempo adicional."}}]}
   </script>
-
-  <!-- JSON-LD: Breadcrumbs -->
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://www.codecraftedu.es/#inicio"},{"@type":"ListItem","position":2,"name":"Quiénes somos","item":"https://www.codecraftedu.es/#sobre"},{"@type":"ListItem","position":3,"name":"Servicios","item":"https://www.codecraftedu.es/#servicios"},{"@type":"ListItem","position":4,"name":"Contacto","item":"https://www.codecraftedu.es/#contacto"}]}
   </script>
