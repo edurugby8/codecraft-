@@ -35,10 +35,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
 
-  <!-- Favicon SVG + fallback -->
-  <link rel="icon" type="image/svg+xml" href="imagen/logotipo-codecraft.svg">
-  <link rel="alternate icon" type="image/png" href="imagen/logotipo-codecraft-512.png">
-
   <style>
     :root{
       --primary:#16a34a;
@@ -79,7 +75,7 @@
     }
     nav.scrolled{background:#0f1f19cc;box-shadow:0 8px 24px rgba(0,0,0,.2)}
     .nav-inner{display:flex;align-items:center;justify-content:space-between;width:100%}
-    .brand{font-weight:800;font-size:1.15rem;letter-spacing:.4px;display:inline-flex;align-items:center;gap:8px}
+    .brand{font-weight:800;font-size:1.15rem;letter-spacing:.4px}
     .nav-links{list-style:none;display:flex;gap:10px}
     .nav-links a{
       color:#fff;text-decoration:none;font-weight:700;
@@ -181,7 +177,7 @@
     .valor-media{
       position:relative;border-radius:20px;overflow:hidden;
       box-shadow:var(--shadow);border:1px solid #e6f2eb;
-      aspect-ratio:16/10;
+      aspect-ratio:16/10; /* marco estable en todos los tamaños */
       max-height:560px;
     }
     .valor-media img{width:100%;height:100%;display:block;object-fit:cover}
@@ -229,11 +225,7 @@
   <!-- NAV -->
   <nav id="topnav" aria-label="Navegación principal">
     <div class="container nav-inner">
-      <a class="brand" href="#inicio">
-        <!-- LOGO: ahora SVG -->
-        <img src="imagen/logotipo-codecraft.svg" alt="CodeCraft — Webs que impulsan tu negocio" height="40" width="160" loading="eager" decoding="async">
-        CodeCraft
-      </a>
+      <a class="brand" href="#inicio">CodeCraft</a>
       <button class="nav-toggle" aria-label="Abrir menú" aria-controls="menu" aria-expanded="false">☰</button>
       <ul id="menu" class="nav-links">
         <li><a href="#inicio">Inicio</a></li>
