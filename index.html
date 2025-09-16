@@ -155,4 +155,386 @@
     .price{display:inline-flex;align-items:center;gap:6px;margin-top:8px;padding:6px 10px;border-radius:999px;background:#ecfdf5;border:1px solid #cfe9dc;color:var(--primary-2);font-weight:800}
 
     /* Metodología (con IA y numeración) */
-    .method{background:#fff;border-radius:20px;padd
+    .method{background:#fff;border-radius:20px;padding:22px 20px;box-shadow:var(--shadow-sm);border:1px solid #e6f2eb}
+    .method h3{text-align:center;margin-bottom:12px;color:var(--primary-2)}
+    .method ol{counter-reset:step;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:0;padding:0}
+    .method li{position:relative;padding:12px 12px 12px 56px;border:1px solid #e6f2eb;border-radius:12px;min-height:56px;display:flex;align-items:center}
+    .method li::before{counter-increment:step;content:counter(step);position:absolute;left:12px;top:50%;transform:translateY(-50%);width:30px;height:30px;border-radius:999px;display:grid;place-items:center;background:linear-gradient(135deg,var(--primary),var(--primary-2));color:#fff;font-weight:800;box-shadow:0 6px 12px rgba(22,163,74,.25)}
+
+    /* Plan destacado de diseño web */
+    .plan{background:#fff;border:1px solid #e6f2eb;border-radius:24px;padding:22px;box-shadow:var(--shadow-sm)}
+    .plan-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:8px}
+    .badge{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;background:#f0fdf4;border:1px solid #bbf7d0;color:#166534;font-weight:800;font-size:.9rem}
+    .plan h3{font-size:1.35rem;margin:0}
+    .plan-features{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-top:8px}
+    .plan-features li{background:#f9fffb;border:1px solid #e6f2eb;border-radius:12px;padding:10px 12px}
+    .plan-price{display:flex;align-items:center;gap:10px;margin-top:10px}
+    .plan-price .num{font-size:2rem;font-weight:800;color:var(--primary-2)}
+    .footnote{font-size:.92rem;color:#64748b;margin-top:8px}
+
+    /* Valor (FIX imagen: contenedor con aspect-ratio y object-fit) */
+    .valor-list{list-style:none;padding:0;font-size:1.05rem;line-height:1.8}
+    .valor-media{
+      position:relative;border-radius:20px;overflow:hidden;
+      box-shadow:var(--shadow);border:1px solid #e6f2eb;
+      aspect-ratio:16/10; /* marco estable en todos los tamaños */
+      max-height:560px;
+    }
+    .valor-media img{width:100%;height:100%;display:block;object-fit:cover}
+
+    /* CTA WHATSAPP */
+    #contacto{text-align:center;padding-bottom:80px}
+    .btn-whatsapp{display:inline-flex;align-items:center;gap:10px;margin-top:14px;padding:12px 22px;border-radius:999px;background:#25d366;color:#fff;font-weight:800;text-decoration:none;box-shadow:0 10px 20px rgba(37,211,102,.35)}
+    .btn-whatsapp:hover{transform:translateY(-2px);filter:brightness(1.05)}
+
+    /* MARQUESINA */
+    .marquesina{width:100%;overflow:hidden;white-space:nowrap;padding:14px 0;background:#001f3f;box-shadow:0 2px 6px rgba(0,0,0,.2)}
+    .marquesina-contenido{display:inline-block;white-space:nowrap;animation:scroll-marquesina 18s linear infinite}
+    .marquesina span{font-size:1.05rem;color:#fff;font-weight:800;margin-right:4rem;display:inline-block}
+    @keyframes scroll-marquesina{0%{transform:translateX(0)}100%{transform:translateX(-100%)}}
+
+    footer{background:#0d0d0d;color:#e2e8f0;text-align:center;padding:28px 12px}
+
+    /* LOADER */
+    #loader{position:fixed;inset:0;background:#0a0f0c;z-index:2000;display:flex;align-items:center;justify-content:center;transition:opacity .8s,visibility .8s}
+    #loader.fade-out{opacity:0;visibility:hidden}
+    #particles{position:absolute;inset:0;z-index:0}
+    .loader-content{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:10px}
+    .loader-content img{width:160px;height:auto;animation:pulse 2s infinite}
+    @keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.08)}100%{transform:scale(1)}}
+
+    .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease, transform .6s ease}
+    .reveal.show{opacity:1;transform:none}
+
+    @media (max-width:900px){
+      .nav-links{position:absolute;top:var(--nav-h);right:16px;left:16px;padding:12px;background:#0f1f19;border:1px solid rgba(255,255,255,.1);border-radius:14px;display:none;flex-direction:column;gap:8px}
+      .nav-links.open{display:flex}
+      .nav-toggle{display:block}
+      .form-row{grid-template-columns:1fr}
+    }
+    @media (prefers-reduced-motion:reduce){.marquesina-contenido{animation:none}.btn,.card,*{transition:none}}
+  </style>
+</head>
+<body>
+  <!-- LOADER -->
+  <div id="loader" aria-hidden="true">
+    <canvas id="particles" aria-hidden="true"></canvas>
+    <div class="loader-content"></div>
+  </div>
+
+  <!-- NAV -->
+  <nav id="topnav" aria-label="Navegación principal">
+    <div class="container nav-inner">
+      <a class="brand" href="#inicio">
+        <img src="imagen/logo-codecraft.png" alt="CodeCraft — Webs que impulsan tu negocio" style="height:40px;width:auto;vertical-align:middle;margin-right:8px">
+        CodeCraft
+      </a>
+      <button class="nav-toggle" aria-label="Abrir menú" aria-controls="menu" aria-expanded="false">☰</button>
+      <ul id="menu" class="nav-links">
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#sobre">Quiénes somos</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header id="inicio" class="hero">
+    <div class="hero-inner container">
+      <h1>Webs que impulsan tu negocio</h1>
+      <p>Equipo profesional de diseño y desarrollo web. Sitios rápidos, seguros y hechos para convertir visitas en clientes.</p>
+      <a class="btn btn-primary" href="#contacto">¡Solicita presupuesto!</a>
+
+      <!-- Formulario rápido -->
+      <div class="quick-form reveal" style="margin-top:2rem">
+        <form action="https://formsubmit.co/edubabarro8.5@gmail.com" method="POST" aria-label="Formulario de contacto rápido">
+          <input type="text" name="_honey" class="sr-only" tabindex="-1" autocomplete="off">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_subject" value="Nueva solicitud desde CodeCraft">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_next" value="https://www.codecraftedu.es/gracias.html">
+
+          <div class="form-row">
+            <label class="sr-only" for="f-nombre">Nombre</label>
+            <input id="f-nombre" class="field" type="text" name="nombre" placeholder="Tu nombre" required>
+
+            <label class="sr-only" for="f-telefono">Teléfono</label>
+            <input id="f-telefono" class="field" type="tel" name="telefono" placeholder="Número de teléfono" required>
+          </div>
+          <div class="form-row">
+            <label class="sr-only" for="f-email">Correo</label>
+            <input id="f-email" class="field full" type="email" name="email" placeholder="Correo electrónico" required>
+          </div>
+          <div class="form-row">
+            <label class="sr-only" for="f-obs">Observaciones</label>
+            <textarea id="f-obs" class="field full" name="observaciones" rows="5" placeholder="Trabajos deseados / Observaciones"></textarea>
+          </div>
+          <div class="form-row">
+            <button class="btn btn-primary" type="submit" style="justify-self:end">Enviar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </header>
+
+  <!-- QUIÉNES SOMOS -->
+  <section id="sobre" class="section">
+    <div class="container">
+      <h2>Quiénes somos</h2>
+      <p class="subtle">
+        En <strong>CodeCraft</strong> somos un equipo de especialistas en <strong>diseño y desarrollo web</strong>,
+        <strong>rendimiento (Core Web Vitals)</strong> y <strong>crecimiento digital</strong> para pymes y emprendedores.
+        Construimos sitios rápidos, seguros y orientados a conversión, con plazos claros y comunicación directa.
+      </p>
+
+      <div class="grid-cards reveal">
+        <div class="card">
+          <h3>Diseño que vende</h3>
+          <p>UX/UI cuidada, identidad consistente y mensajes que convierten.</p>
+        </div>
+        <div class="card">
+          <h3>Tecnología sólida</h3>
+          <p>Código limpio, tiempos de carga bajos, accesibilidad y seguridad.</p>
+        </div>
+        <div class="card">
+          <h3>SEO &amp; Contenidos</h3>
+          <p>Estructura técnica + contenido optimizado para ganar visibilidad.</p>
+        </div>
+        <div class="card">
+          <h3>Mantenimiento proactivo</h3>
+          <p>Actualizaciones, copias de seguridad y soporte continuo.</p>
+        </div>
+      </div>
+
+      <!-- Metodología con IA -->
+      <div class="method container reveal" style="margin-top:28px">
+        <h3>Nuestra metodología</h3>
+        <ol>
+          <li>Descubrimiento y objetivos</li>
+          <li>Propuesta y calendario</li>
+          <li>Diseño UX/UI</li>
+          <li>Optimización con IA (análisis de contenido, variantes creativas y asistentes para acelerar producción)</li>
+          <li>Desarrollo + QA</li>
+          <li>Lanzamiento y soporte</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section id="servicios" class="section" itemscope itemtype="https://schema.org/Service">
+    <div class="container">
+      <h2>Servicios</h2>
+      <p class="subtle">Nos especializamos en <strong>Diseño Web</strong>. El resto de servicios complementan tu presencia digital.</p>
+
+      <!-- Plan destacado -->
+      <div class="plan reveal" itemprop="hasOfferCatalog" itemscope itemtype="https://schema.org/Offer">
+        <div class="plan-head">
+          <h3 itemprop="name">Diseño web · Plan Básico</h3>
+          <span class="badge">Más elegido</span>
+        </div>
+        <div class="plan-price">
+          <span class="num" itemprop="price" content="75">75&nbsp;€</span>
+          <span class="price" itemprop="priceCurrency" content="EUR">precio cerrado</span>
+        </div>
+        <p class="subtle" style="margin-top:2px" itemprop="description">Ideal para empezar con una web clara y lista para convertir.</p>
+
+        <ul class="plan-features" style="margin-top:8px">
+          <li>• Lema de la empresa (propio o lo creamos nosotros)</li>
+          <li>• 2 imágenes decorativas (optimización incluida)</li>
+          <li>• Secciones: Inicio, Quiénes somos, Servicios y Contacto</li>
+          <li>• Botón de WhatsApp en Contacto</li>
+        </ul>
+
+        <p class="footnote">* El <strong>dominio</strong> se paga aparte (cuota anual según registrador). Hosting opcional.</p>
+
+        <h3 style="margin:14px 0 6px">Extras opcionales</h3>
+        <div class="grid-cards" style="margin-top:4px">
+          <div class="card"><h3>Logo</h3><p>Diseño de logotipo en PNG/SVG + guía breve de uso.</p><span class="price">30&nbsp;€</span></div>
+          <div class="card"><h3>Tienda con catálogo</h3><p>Listado de productos, fichas y carrito básico.</p><span class="price">150&nbsp;€</span></div>
+          <div class="card"><h3>Formulario + Página “Gracias”</h3><p>Formulario de contacto y página de confirmación.</p><span class="price">30&nbsp;€</span></div>
+          <div class="card"><h3>Barra informativa (marquesina)</h3><p>Mensaje que se desplaza con anuncios/ofertas.</p><span class="price">30&nbsp;€</span></div>
+          <div class="card"><h3>Publicación SEO</h3><p>Entrada optimizada (keyword, meta, estructura).</p><span class="price">39&nbsp;€</span></div>
+          <div class="card"><h3>Página adicional</h3><p>Sección nueva con contenido y maquetación.</p><span class="price">25&nbsp;€</span></div>
+          <div class="card"><h3>Multiidioma</h3><p>Duplicado de páginas + selector de idioma.</p><span class="price">59&nbsp;€</span></div>
+          <div class="card"><h3>Google Maps &amp; ficha negocio</h3><p>Mapa integrado + asesoría de ficha.</p><span class="price">15&nbsp;€</span></div>
+          <div class="card"><h3>Políticas legales</h3><p>Privacidad, cookies y aviso legal básicos.</p><span class="price">25&nbsp;€</span></div>
+        </div>
+      </div>
+
+      <!-- Otros servicios -->
+      <h3 style="text-align:center;margin:28px 0 12px;color:var(--primary-2)">Otros servicios</h3>
+      <div class="grid-cards reveal">
+        <div class="card">
+          <h3>Mantenimiento Web</h3>
+          <p>Actualizaciones, copias de seguridad y ajustes técnicos.</p>
+          <span class="price">desde 29&nbsp;€/mes</span>
+        </div>
+        <div class="card">
+          <h3>Asesoría &amp; SEO</h3>
+          <p>Auditoría técnica y contenidos para mejorar visibilidad.</p>
+          <span class="price">desde 99&nbsp;€</span>
+        </div>
+        <div class="card">
+          <h3>Gestión de redes sociales</h3>
+          <p>Plan editorial y publicaciones mensuales.</p>
+          <span class="price">desde 99&nbsp;€/mes</span>
+        </div>
+        <div class="card">
+          <h3>Reels / Vídeo corto</h3>
+          <p>Guion, edición y subtítulos para Instagram/TikTok.</p>
+          <span class="price">desde 39&nbsp;€/pieza</span>
+        </div>
+        <div class="card">
+          <h3>Creación de códigos QR</h3>
+          <p>QR estáticos/dinámicos con tu marca, para impresión o campañas.</p>
+          <span class="price">desde 15&nbsp;€</span>
+        </div>
+        <div class="card">
+          <h3>Creación de logos</h3>
+          <p>Identidad visual lista para web y redes.</p>
+          <span class="price">30&nbsp;€</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALOR (FIX imagen) -->
+  <section id="valor" class="section">
+    <div class="container">
+      <h2>Creando webs de valor</h2>
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:24px" class="reveal">
+        <div style="flex:1;min-width:280px">
+          <ul class="valor-list">
+            <li>✔ Escuchamos tus ideas y visión</li>
+            <li>✔ Nos adaptamos a tus objetivos</li>
+            <li>✔ Conectamos tu negocio con más público</li>
+            <li>✔ Creamos campañas de marketing efectivas</li>
+            <li>✔ Transmitimos el valor de tus productos</li>
+          </ul>
+        </div>
+        <div style="flex:1;min-width:280px">
+          <figure class="valor-media">
+            <img
+              src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1200&q=80"
+              srcset="
+                https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=800&q=80 800w,
+                https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1200&q=80 1200w,
+                https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1600&q=80 1600w"
+              sizes="(max-width: 900px) 100vw, 50vw"
+              alt="Laptop con código y escritorio de trabajo creativo"
+              width="1200" height="750" loading="lazy" decoding="async" fetchpriority="low">
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="section">
+    <div class="container">
+      <h2>Preguntas frecuentes</h2>
+      <div class="grid-cards reveal">
+        <div class="card">
+          <h3>¿Cuánto cuesta la web básica?</h3>
+          <p>El plan básico cuesta <strong>75€</strong> e incluye lema, 2 imágenes optimizadas, Inicio, Quiénes somos, Servicios y Contacto con botón de WhatsApp.</p>
+        </div>
+        <div class="card">
+          <h3>¿El dominio está incluido?</h3>
+          <p>No. El <strong>dominio</strong> se paga aparte con cuota anual según el registrador. Podemos asesorarte para elegir el mejor.</p>
+        </div>
+        <div class="card">
+          <h3>¿Tiempo de entrega estimado?</h3>
+          <p>Según contenido, el plan básico suele estar listo en <strong>3–7 días laborables</strong>. Extras pueden añadir tiempo adicional.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto" class="section">
+    <div class="container reveal" style="text-align:center">
+      <h2>Contacto</h2>
+      <p>¿Te interesa una web? Escríbenos y pide presupuesto sin compromiso:</p>
+      <a class="btn-whatsapp" href="https://wa.me/34697625964" target="_blank" rel="noopener nofollow" aria-label="Abrir WhatsApp">
+        <span aria-hidden="true">💬</span> Hablar por WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <!-- MARQUESINA -->
+  <div class="marquesina" role="marquee" aria-hidden="true">
+    <div class="marquesina-contenido">
+      <span>🌐 WEBS QUE IMPULSAN TU NEGOCIO · 🚀 EQUIPO PROFESIONAL · 📊 MARKETING EFECTIVO · 💡 IDEAS PERSONALIZADAS · </span>
+      <span>🌐 WEBS QUE IMPULSAN TU NEGOCIO · 🚀 EQUIPO PROFESIONAL · 📊 MARKETING EFECTIVO · 💡 IDEAS PERSONALIZADAS · </span>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 CodeCraft. Todos los derechos reservados.</p>
+  </footer>
+
+  <!-- Partículas -->
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js" defer></script>
+
+  <script>
+    // Navegación y menú móvil
+    const nav = document.getElementById('topnav');
+    const menu = document.getElementById('menu');
+    const toggle = document.querySelector('.nav-toggle');
+    function onScroll(){ window.scrollY > 8 ? nav.classList.add('scrolled') : nav.classList.remove('scrolled'); }
+    window.addEventListener('scroll', onScroll); onScroll();
+    toggle?.addEventListener('click', () => {
+      const isOpen = menu.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    // Reveal on scroll
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target); } });
+    },{threshold:.12});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+    // Loader con partículas
+    window.addEventListener('load', async () => {
+      try{
+        if(window.tsParticles){
+          await tsParticles.load('particles', {
+            background: { color: { value:'#0a0f0c' } },
+            particles:{
+              number:{ value:60 }, color:{ value:'#16a34a' }, opacity:{ value:0.45 },
+              size:{ value:3 }, move:{ enable:true, speed:0.6 },
+              links:{ enable:true, color:'#16a34a', opacity:0.3, distance:100 }
+            }, detectRetina:true
+          });
+        }
+      }catch(_e){}
+      setTimeout(() => document.getElementById('loader').classList.add('fade-out'), 1200);
+    });
+  </script>
+
+  <!-- JSON-LD: Organization + Website -->
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Organization","name":"CodeCraft","url":"https://www.codecraftedu.es/","sameAs":["https://wa.me/34697625964"],"description":"Diseño y desarrollo web profesional para pymes y emprendedores."}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebSite","name":"CodeCraft","url":"https://www.codecraftedu.es/","inLanguage":"es-ES","potentialAction":{"@type":"ContactPoint","contactType":"customer support","url":"https://wa.me/34697625964"}}
+  </script>
+
+  <!-- JSON-LD: Servicio principal + extras -->
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Service","name":"Diseño web · Plan Básico","provider":{"@type":"Organization","name":"CodeCraft","url":"https://www.codecraftedu.es/"},"areaServed":"ES","offers":{"@type":"Offer","priceCurrency":"EUR","price":"75","url":"https://www.codecraftedu.es/#servicios","availability":"https://schema.org/InStock"},"hasOfferCatalog":{"@type":"OfferCatalog","name":"Extras de la web","itemListElement":[{"@type":"Offer","name":"Logo","price":"30","priceCurrency":"EUR"},{"@type":"Offer","name":"Tienda con catálogo","price":"150","priceCurrency":"EUR"},{"@type":"Offer","name":"Formulario + Página Gracias","price":"30","priceCurrency":"EUR"},{"@type":"Offer","name":"Barra informativa (marquesina)","price":"30","priceCurrency":"EUR"},{"@type":"Offer","name":"Publicación SEO","price":"39","priceCurrency":"EUR"},{"@type":"Offer","name":"Página adicional","price":"25","priceCurrency":"EUR"},{"@type":"Offer","name":"Multiidioma","price":"59","priceCurrency":"EUR"},{"@type":"Offer","name":"Google Maps & ficha negocio","price":"15","priceCurrency":"EUR"},{"@type":"Offer","name":"Políticas legales básicas","price":"25","priceCurrency":"EUR"}]}}
+  </script>
+
+  <!-- JSON-LD: FAQPage -->
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Cuánto cuesta la web básica?","acceptedAnswer":{"@type":"Answer","text":"El plan básico cuesta 75€ e incluye lema, 2 imágenes optimizadas, Inicio, Quiénes somos, Servicios y Contacto con botón de WhatsApp."}},{"@type":"Question","name":"¿El dominio está incluido?","acceptedAnswer":{"@type":"Answer","text":"No. El dominio se paga aparte con cuota anual según el registrador. Podemos asesorarte para elegir el mejor."}},{"@type":"Question","name":"¿Tiempo de entrega estimado?","acceptedAnswer":{"@type":"Answer","text":"Según contenido, el plan básico suele estar listo en 3–7 días laborables. Los extras pueden añadir tiempo adicional."}}]}
+  </script>
+
+  <!-- JSON-LD: Breadcrumbs -->
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://www.codecraftedu.es/#inicio"},{"@type":"ListItem","position":2,"name":"Quiénes somos","item":"https://www.codecraftedu.es/#sobre"},{"@type":"ListItem","position":3,"name":"Servicios","item":"https://www.codecraftedu.es/#servicios"},{"@type":"ListItem","position":4,"name":"Contacto","item":"https://www.codecraftedu.es/#contacto"}]}
+  </script>
+</body>
+</html>
