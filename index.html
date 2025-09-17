@@ -177,7 +177,7 @@
     .valor-media{
       position:relative;border-radius:20px;overflow:hidden;
       box-shadow:var(--shadow);border:1px solid #e6f2eb;
-      aspect-ratio:16/10; /* marco estable en todos los tamaños */
+      aspect-ratio:16/10;
       max-height:560px;
     }
     .valor-media img{width:100%;height:100%;display:block;object-fit:cover}
@@ -206,6 +206,21 @@
     .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease, transform .6s ease}
     .reveal.show{opacity:1;transform:none}
 
+    /* ======== Packs (estilos mínimos) ======== */
+    .packs-title{ text-align:center; font-size:1.75rem; margin:26px 0 14px; color:var(--primary-2); }
+    .packs-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px; }
+    .pack-card{ background:#fff; border:1px solid #e6f2eb; border-radius:16px; padding:18px; box-shadow:var(--shadow-sm); position:relative; }
+    .pack-card:hover{ transform:translateY(-6px); box-shadow:var(--shadow); border-color:#cfe9dc; }
+    .pack-head{ display:flex; justify-content:space-between; align-items:baseline; gap:.5rem; }
+    .pack-name{ font-size:1.2rem; font-weight:800; margin:0; }
+    .pack-price{ background:#ecfdf5; color:var(--primary-2); border:1px solid #cfe9dc; border-radius:999px; padding:.3rem .6rem; font-weight:800; }
+    .pack-badge{ position:absolute; top:10px; right:10px; background:var(--primary); color:#fff; font-size:.75rem; padding:.25rem .5rem; border-radius:999px; }
+    .pack-tagline{ color:#334155; margin:.4rem 0 .8rem; }
+    .pack-list{ margin-left:1rem; color:#1f2937; }
+    .packs-notes{ margin-top:.75rem; font-size:.92rem; color:#64748b; text-align:center; }
+    /* que el ancla #packs no quede oculto por la nav fija */
+    #packs{ scroll-margin-top: calc(var(--nav-h) + 24px); }
+
     @media (max-width:900px){
       .nav-links{position:absolute;top:var(--nav-h);right:16px;left:16px;padding:12px;background:#0f1f19;border:1px solid rgba(255,255,255,.1);border-radius:14px;display:none;flex-direction:column;gap:8px}
       .nav-links.open{display:flex}
@@ -231,6 +246,7 @@
         <li><a href="#inicio">Inicio</a></li>
         <li><a href="#sobre">Quiénes somos</a></li>
         <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#packs">Packs</a></li>
         <li><a href="#contacto">Contacto</a></li>
       </ul>
     </div>
@@ -359,6 +375,63 @@
           <div class="card"><h3>Políticas legales</h3><p>Privacidad, cookies y aviso legal básicos.</p><span class="price">25&nbsp;€</span></div>
         </div>
       </div>
+
+      <!-- ===== Packs recomendados (con logo incluido) ===== -->
+      <h3 class="packs-title reveal" id="packs">Packs recomendados</h3>
+      <div class="packs-grid reveal" aria-describedby="packs-nota">
+        <!-- Pack Emprende -->
+        <article class="pack-card">
+          <header class="pack-head">
+            <h4 class="pack-name">Pack Emprende</h4>
+            <span class="pack-price">150 €</span>
+          </header>
+          <p class="pack-tagline">Landing esencial + <strong>logo incluido</strong>.</p>
+          <ul class="pack-list">
+            <li>1 página con secciones: hero, servicios y contacto.</li>
+            <li>Formulario de contacto + WhatsApp.</li>
+            <li>Mapa integrado y llamada a la acción.</li>
+            <li>Políticas básicas enlazadas.</li>
+            <li>SEO ligero (título y descripción).</li>
+          </ul>
+          <a href="#contacto" class="btn btn-primary" style="margin-top:.75rem">Lo quiero</a>
+        </article>
+
+        <!-- Pack Negocio -->
+        <article class="pack-card" style="border-color:#cfe9dc">
+          <div class="pack-badge">Más elegido</div>
+          <header class="pack-head">
+            <h4 class="pack-name">Pack Negocio</h4>
+            <span class="pack-price">300 €</span>
+          </header>
+          <p class="pack-tagline">Web multipágina + <strong>logo incluido</strong>.</p>
+          <ul class="pack-list">
+            <li>Hasta 5 secciones (Inicio, Servicios, Sobre, Galería, Contacto).</li>
+            <li>Formulario + página “Gracias”.</li>
+            <li>Barra informativa (marquesina) para ofertas.</li>
+            <li>SEO básico on-page (H1–H3, meta, estructura).</li>
+            <li>Integración de Google Maps y redes.</li>
+          </ul>
+          <a href="#contacto" class="btn btn-primary" style="margin-top:.75rem">Empezar ahora</a>
+        </article>
+
+        <!-- Pack Tienda -->
+        <article class="pack-card">
+          <header class="pack-head">
+            <h4 class="pack-name">Pack Tienda</h4>
+            <span class="pack-price">550 €</span>
+          </header>
+          <p class="pack-tagline">Catálogo + carrito + <strong>logo incluido</strong>.</p>
+          <ul class="pack-list">
+            <li>Catálogo hasta 20 productos (fichas con fotos y precios).</li>
+            <li>Carrito básico y email de pedido al negocio.</li>
+            <li>Configuración de envíos y métodos de contacto.</li>
+            <li>Guía breve para añadir/editar productos.</li>
+            <li>SEO básico en categorías y productos.</li>
+          </ul>
+          <a href="#contacto" class="btn btn-primary" style="margin-top:.75rem">Quiero mi tienda</a>
+        </article>
+      </div>
+      <p id="packs-nota" class="packs-notes">*Precios pack. Hosting y dominio no incluidos. Incluyen 1 ronda de revisiones.</p>
 
       <!-- Otros servicios -->
       <h3 style="text-align:center;margin:28px 0 12px;color:var(--primary-2)">Otros servicios</h3>
@@ -524,6 +597,15 @@
   {"@context":"https://schema.org","@type":"Service","name":"Diseño web · Plan Básico","provider":{"@type":"Organization","name":"CodeCraft","url":"https://www.codecraftedu.es/"},"areaServed":"ES","offers":{"@type":"Offer","priceCurrency":"EUR","price":"75","url":"https://www.codecraftedu.es/#servicios","availability":"https://schema.org/InStock"},"hasOfferCatalog":{"@type":"OfferCatalog","name":"Extras de la web","itemListElement":[{"@type":"Offer","name":"Logo","price":"30","priceCurrency":"EUR"},{"@type":"Offer","name":"Tienda con catálogo","price":"150","priceCurrency":"EUR"},{"@type":"Offer","name":"Formulario + Página Gracias","price":"30","priceCurrency":"EUR"},{"@type":"Offer","name":"Barra informativa (marquesina)","price":"30","priceCurrency":"EUR"},{"@type":"Offer","name":"Publicación SEO","price":"39","priceCurrency":"EUR"},{"@type":"Offer","name":"Página adicional","price":"25","priceCurrency":"EUR"},{"@type":"Offer","name":"Multiidioma","price":"59","priceCurrency":"EUR"},{"@type":"Offer","name":"Google Maps & ficha negocio","price":"15","priceCurrency":"EUR"},{"@type":"Offer","name":"Políticas legales básicas","price":"25","priceCurrency":"EUR"}]}}
   </script>
 
+  <!-- JSON-LD: Packs (independiente para SEO) -->
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"OfferCatalog","name":"Packs web CodeCraft","itemListElement":[
+    {"@type":"Offer","name":"Pack Emprende (con logo)","price":"150","priceCurrency":"EUR","category":"WebDesign"},
+    {"@type":"Offer","name":"Pack Negocio (con logo)","price":"300","priceCurrency":"EUR","category":"WebDesign"},
+    {"@type":"Offer","name":"Pack Tienda (con logo)","price":"550","priceCurrency":"EUR","category":"EcommerceDevelopment"}
+  ]}
+  </script>
+
   <!-- JSON-LD: FAQPage -->
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Cuánto cuesta la web básica?","acceptedAnswer":{"@type":"Answer","text":"El plan básico cuesta 75€ e incluye lema, 2 imágenes optimizadas, Inicio, Quiénes somos, Servicios y Contacto con botón de WhatsApp."}},{"@type":"Question","name":"¿El dominio está incluido?","acceptedAnswer":{"@type":"Answer","text":"No. El dominio se paga aparte con cuota anual según el registrador. Podemos asesorarte para elegir el mejor."}},{"@type":"Question","name":"¿Tiempo de entrega estimado?","acceptedAnswer":{"@type":"Answer","text":"Según contenido, el plan básico suele estar listo en 3–7 días laborables. Los extras pueden añadir tiempo adicional."}}]}
@@ -531,7 +613,13 @@
 
   <!-- JSON-LD: Breadcrumbs -->
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://www.codecraftedu.es/#inicio"},{"@type":"ListItem","position":2,"name":"Quiénes somos","item":"https://www.codecraftedu.es/#sobre"},{"@type":"ListItem","position":3,"name":"Servicios","item":"https://www.codecraftedu.es/#servicios"},{"@type":"ListItem","position":4,"name":"Contacto","item":"https://www.codecraftedu.es/#contacto"}]}
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Inicio","item":"https://www.codecraftedu.es/#inicio"},
+    {"@type":"ListItem","position":2,"name":"Quiénes somos","item":"https://www.codecraftedu.es/#sobre"},
+    {"@type":"ListItem","position":3,"name":"Servicios","item":"https://www.codecraftedu.es/#servicios"},
+    {"@type":"ListItem","position":4,"name":"Packs","item":"https://www.codecraftedu.es/#packs"},
+    {"@type":"ListItem","position":5,"name":"Contacto","item":"https://www.codecraftedu.es/#contacto"}
+  ]}
   </script>
 </body>
 </html>
