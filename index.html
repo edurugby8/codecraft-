@@ -76,6 +76,9 @@
     nav.scrolled{background:#0f1f19cc;box-shadow:0 8px 24px rgba(0,0,0,.2)}
     .nav-inner{display:flex;align-items:center;justify-content:space-between;width:100%}
     .brand{font-weight:800;font-size:1.15rem;letter-spacing:.4px}
+    /* Tamaño del logo en la nav */
+    .brand img{height:42px;width:auto;vertical-align:middle;display:block}
+
     .nav-links{list-style:none;display:flex;gap:10px}
     .nav-links a{
       color:#fff;text-decoration:none;font-weight:700;
@@ -218,7 +221,6 @@
     .pack-tagline{ color:#334155; margin:.4rem 0 .8rem; }
     .pack-list{ margin-left:1rem; color:#1f2937; }
     .packs-notes{ margin-top:.75rem; font-size:.92rem; color:#64748b; text-align:center; }
-    /* que el ancla #packs no quede oculto por la nav fija */
     #packs{ scroll-margin-top: calc(var(--nav-h) + 24px); }
 
     @media (max-width:900px){
@@ -240,7 +242,12 @@
   <!-- NAV -->
   <nav id="topnav" aria-label="Navegación principal">
     <div class="container nav-inner">
-      <a class="brand" href="#inicio">CodeCraft</a>
+      <!-- ===== LOGO INSERTADO AQUÍ ===== -->
+      <a class="brand" href="#inicio" aria-label="CodeCraft · Inicio">
+        <img src="imagen/logotipo-codecraft.png" alt="CodeCraft — Webs que impulsan tu negocio" width="184" height="42" loading="eager" fetchpriority="high">
+      </a>
+      <!-- ================================= -->
+
       <button class="nav-toggle" aria-label="Abrir menú" aria-controls="menu" aria-expanded="false">☰</button>
       <ul id="menu" class="nav-links">
         <li><a href="#inicio">Inicio</a></li>
